@@ -1,5 +1,7 @@
 import 'package:meta/meta.dart';
 
+import 'package:photos_sync/extensions/map_extensions.dart';
+
 /// A model describing a synced photo's data.
 class SyncedPhoto {
   static const _emptyString = '';
@@ -17,9 +19,9 @@ class SyncedPhoto {
         assert(filename != null && filename != _emptyString);
 
   factory SyncedPhoto.fromJson(Map<String, dynamic> json) => SyncedPhoto(
-        user: json['user'],
-        folder: json['folder'],
-        filename: json['filename'],
+        user: json.tryParse('user'),
+        folder: json.tryParse('folder'),
+        filename: json.tryParse('filename'),
       );
 
   Map<String, dynamic> toJson() => {
