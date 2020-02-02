@@ -6,7 +6,7 @@ import '../models/synced_photo.dart';
 /// A service which syncs files with a remote server
 abstract class ISyncService {
   /// Uploads a file
-  Future<String> uploadFile(File file, {@required SyncedPhoto photo});
+  Future<bool> uploadFile(File file, {@required SyncedPhoto photo});
 
   /// Determines a file's url
   Future<String> getFileUrl(SyncedPhoto photo);
