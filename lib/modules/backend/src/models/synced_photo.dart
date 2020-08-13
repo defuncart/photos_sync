@@ -1,5 +1,4 @@
 import 'package:meta/meta.dart';
-
 import 'package:photos_sync/extensions/map_extensions.dart';
 
 /// A model describing a synced photo's data.
