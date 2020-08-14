@@ -5,8 +5,8 @@ import 'package:photos_sync/i18n.dart';
 import 'package:photos_sync/modules/backend/backend.dart';
 import 'package:photos_sync/modules/user_preferences/user_preferences.dart';
 import 'package:photos_sync/services/firebase_service.dart';
-import 'package:photos_sync/widgets/auth_screen/auth_screen.dart';
 import 'package:photos_sync/widgets/home_screen/home_screen.dart';
+import 'package:photos_sync/widgets/welcome_screen/welcome_screen.dart';
 import 'package:provider/provider.dart';
 
 class MyApp extends StatelessWidget {
@@ -35,11 +35,12 @@ class MyApp extends StatelessWidget {
         ],
         supportedLocales: I18nDelegate.supportedLocals,
         theme: ThemeData.light().copyWith(
+          accentColor: Colors.red,
           scaffoldBackgroundColor: Colors.white,
         ),
-        home: UserPreferences.getIsLoggedIn() ? HomeScreen() : AuthScreen(),
+        home: UserPreferences.getIsLoggedIn() ? HomeScreen() : WelcomeScreen(),
         routes: {
-          RouteNames.authScreen: (_) => AuthScreen(),
+          RouteNames.welcomeScreen: (_) => WelcomeScreen(),
           RouteNames.homeScreen: (_) => HomeScreen(),
         },
       ),

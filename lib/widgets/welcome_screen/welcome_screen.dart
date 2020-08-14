@@ -6,8 +6,8 @@ import 'package:photos_sync/widgets/common/custom_button.dart';
 import 'package:photos_sync/widgets/common/modal_progress_indicator.dart';
 import 'package:provider/provider.dart';
 
-class AuthScreen extends StatelessWidget {
-  const AuthScreen({Key key}) : super(key: key);
+class WelcomeScreen extends StatelessWidget {
+  const WelcomeScreen({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -58,12 +58,12 @@ class AuthScreen extends StatelessWidget {
               ],
             ),
             // description
-            Text(I18n.authScreenDescriptionText),
+            Text(I18n.welcomeScreenDescriptionText),
             // call to action
             Column(
               children: [
                 CustomButton(
-                  buttonText: I18n.authScreenSignupButtonText,
+                  buttonText: I18n.welcomeScreenSignupButtonText,
                   onPressed: () async {
                     ModalProgressIndicator.show(context);
                     final success = await authService.createUserAccount(email: 'bla@test.de', password: '123456');
@@ -75,7 +75,7 @@ class AuthScreen extends StatelessWidget {
                   isFilled: true,
                 ),
                 CustomButton(
-                  buttonText: I18n.authScreenLoginButtonText,
+                  buttonText: I18n.welcomeScreenLoginButtonText,
                   onPressed: () async {
                     ModalProgressIndicator.show(context);
                     final success = await authService.login(email: 'test@test.de', password: '123456');

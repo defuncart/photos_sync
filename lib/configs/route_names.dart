@@ -1,4 +1,4 @@
 class RouteNames {
-  static const authScreen = 'authScreen';
+  static const welcomeScreen = 'welcomeScreen';
   static const homeScreen = 'homeScreen';
 }

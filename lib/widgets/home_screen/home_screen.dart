@@ -19,7 +19,7 @@ class HomeScreen extends StatelessWidget {
             buttonText: I18n.homeScreenLogoutButtonText,
             onPressed: () async {
               await context.read<IAuthService>().logout();
-              Navigator.of(context).pushReplacementNamed(RouteNames.authScreen);
+              Navigator.of(context).pushReplacementNamed(RouteNames.welcomeScreen);
             },
           ),
         ),

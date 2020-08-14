@@ -1,5 +1,5 @@
 keys;description;de;en
-authScreenDescriptionText;Auth Screen;Synchronisier deine Bilder mit Remote-Server.;Easily sync your photos with a remote server.
-authScreenSignupButtonText;Auth Screen;Anmelden;Signup
-authScreenLoginButtonText;Auth Screen;Einloggen;Login
+welcomeScreenDescriptionText;Welcome Screen;Synchronisier deine Bilder mit Remote-Server.;Easily sync your photos with a remote server.
+welcomeScreenSignupButtonText;Welcome Screen;Anmelden;Signup
+welcomeScreenLoginButtonText;Welcome Screen;Einloggen;Login
 homeScreenLogoutButtonText;Home Screen;Ausloggen;Logout
