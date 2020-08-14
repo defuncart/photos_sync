@@ -6,7 +6,6 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:http/http.dart' as http;
 import 'package:meta/meta.dart';
 import 'package:path/path.dart' as path;
-
 import 'package:photos_sync/configs/firebase_settings.dart';
 import 'package:photos_sync/modules/backend/backend.dart';
 

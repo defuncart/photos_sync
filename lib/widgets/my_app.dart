@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:provider/provider.dart';
-
 import 'package:photos_sync/i18n.dart';
 import 'package:photos_sync/modules/backend/backend.dart';
 import 'package:photos_sync/services/firebase_service.dart';
+import 'package:provider/provider.dart';
 
 class MyApp extends StatelessWidget {
   static final _firebaseService = FirebaseService();

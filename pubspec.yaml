@@ -1,9 +1,11 @@
 name: photos_sync
 description: A Flutter app to sync photos to/from a remote server.
+push_to: 'none'
 version: 0.0.1+1
 
 environment:
-  sdk: ">=2.7.0 <3.0.0"
+  sdk: ">=2.8.0 <3.0.0"
+  flutter: ">= 1.17.0 <2.0.0"
 
 dependencies:
   flutter:
@@ -11,12 +13,13 @@ dependencies:
   flutter_localizations:
     sdk: flutter
   cupertino_icons: 0.1.3
-  provider: 4.0.2
-  http: ^0.12.0+4
+  provider: ^4.3.2
+  http: ^0.12.2
+  shared_preferences: ^0.5.8
   # google
-  firebase_auth: 0.15.3
-  cloud_firestore: 0.13.0+1
-  firebase_storage: 3.1.1
+  firebase_auth: 0.16.1
+  cloud_firestore: 0.13.7
+  firebase_storage: 3.1.6
 
 dev_dependencies:
   flutter_test:
