@@ -22,15 +22,18 @@ class CustomButton extends StatelessWidget {
       shape: RoundedRectangleBorder(
         side: BorderSide(
           color: Colors.black,
-          width: 2,
+          width: 1,
           style: BorderStyle.solid,
         ),
         borderRadius: BorderRadius.circular(16.0),
       ),
-      child: Text(
-        buttonText.toUpperCase(),
-        style: TextStyle(
-          fontWeight: FontWeight.bold,
+      child: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 16),
+        child: Text(
+          buttonText.toUpperCase(),
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+          ),
         ),
       ),
       textColor: isFilled ? Colors.white : Colors.black,
