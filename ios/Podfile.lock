@@ -168,6 +168,40 @@ PODS:
     - Firebase/Core
     - Firebase/Firestore (~> 6.0)
     - Flutter
+  - DKImagePickerController/Core (4.2.2):
+    - DKImagePickerController/ImageDataManager
+    - DKImagePickerController/Resource
+  - DKImagePickerController/ImageDataManager (4.2.2)
+  - DKImagePickerController/PhotoGallery (4.2.2):
+    - DKImagePickerController/Core
+    - DKPhotoGallery
+  - DKImagePickerController/Resource (4.2.2)
+  - DKPhotoGallery (0.0.14):
+    - DKPhotoGallery/Core (= 0.0.14)
+    - DKPhotoGallery/Model (= 0.0.14)
+    - DKPhotoGallery/Preview (= 0.0.14)
+    - DKPhotoGallery/Resource (= 0.0.14)
+    - SDWebImage
+    - SDWebImageFLPlugin
+  - DKPhotoGallery/Core (0.0.14):
+    - DKPhotoGallery/Model
+    - DKPhotoGallery/Preview
+    - SDWebImage
+    - SDWebImageFLPlugin
+  - DKPhotoGallery/Model (0.0.14):
+    - SDWebImage
+    - SDWebImageFLPlugin
+  - DKPhotoGallery/Preview (0.0.14):
+    - DKPhotoGallery/Model
+    - DKPhotoGallery/Resource
+    - SDWebImage
+    - SDWebImageFLPlugin
+  - DKPhotoGallery/Resource (0.0.14):
+    - SDWebImage
+    - SDWebImageFLPlugin
+  - file_picker (0.0.1):
+    - DKImagePickerController/PhotoGallery
+    - Flutter
   - Firebase/Auth (6.14.0):
     - Firebase/CoreOnly
     - FirebaseAuth (~> 6.4.1)
@@ -241,6 +275,7 @@ PODS:
     - FirebaseAuthInterop (~> 1.0)
     - FirebaseCore (~> 6.0)
     - GTMSessionFetcher/Core (~> 1.1)
+  - FLAnimatedImage (1.0.12)
   - Flutter (1.0.0)
   - GoogleAppMeasurement (6.1.7):
     - GoogleUtilities/AppDelegateSwizzler (~> 6.0)
@@ -293,11 +328,18 @@ PODS:
     - nanopb/encode (= 0.3.9011)
   - nanopb/decode (0.3.9011)
   - nanopb/encode (0.3.9011)
+  - SDWebImage (5.8.4):
+    - SDWebImage/Core (= 5.8.4)
+  - SDWebImage/Core (5.8.4)
+  - SDWebImageFLPlugin (0.4.0):
+    - FLAnimatedImage (>= 1.0.11)
+    - SDWebImage/Core (~> 5.6)
   - shared_preferences (0.0.1):
     - Flutter
 
 DEPENDENCIES:
   - cloud_firestore (from `.symlinks/plugins/cloud_firestore/ios`)
+  - file_picker (from `.symlinks/plugins/file_picker/ios`)
   - firebase_auth (from `.symlinks/plugins/firebase_auth/ios`)
   - firebase_core (from `.symlinks/plugins/firebase_core/ios`)
   - firebase_storage (from `.symlinks/plugins/firebase_storage/ios`)
@@ -308,6 +350,8 @@ SPEC REPOS:
   trunk:
     - abseil
     - BoringSSL-GRPC
+    - DKImagePickerController
+    - DKPhotoGallery
     - Firebase
     - FirebaseAnalytics
     - FirebaseAuth
@@ -318,6 +362,7 @@ SPEC REPOS:
     - FirebaseFirestore
     - FirebaseInstanceID
     - FirebaseStorage
+    - FLAnimatedImage
     - GoogleAppMeasurement
     - GoogleDataTransport
     - GoogleDataTransportCCTSupport
@@ -327,10 +372,14 @@ SPEC REPOS:
     - GTMSessionFetcher
     - leveldb-library
     - nanopb
+    - SDWebImage
+    - SDWebImageFLPlugin
 
 EXTERNAL SOURCES:
   cloud_firestore:
     :path: ".symlinks/plugins/cloud_firestore/ios"
+  file_picker:
+    :path: ".symlinks/plugins/file_picker/ios"
   firebase_auth:
     :path: ".symlinks/plugins/firebase_auth/ios"
   firebase_core:
@@ -346,6 +395,9 @@ SPEC CHECKSUMS:
   abseil: 18063d773f5366ff8736a050fe035a28f635fd27
   BoringSSL-GRPC: db8764df3204ccea016e1c8dd15d9a9ad63ff318
   cloud_firestore: 2a4f8f802fb0b701cf809b283b6bec7477ebaa6f
+  DKImagePickerController: 4a3e7948a848c4348e600b3fe5ce41478835fa10
+  DKPhotoGallery: 0290d32343574f06eaa4c26f8f2f8a1035e916be
+  file_picker: 3e6c3790de664ccf9b882732d9db5eaf6b8d4eb1
   Firebase: 0219bb4782eb1406f1b9b0628a2e625484ce910d
   firebase_auth: af8784c4d8d87c36f730a305f97bfbcb24db024b
   firebase_core: 335c02abd48672b7c83c683df833d0488a72e73e
@@ -359,6 +411,7 @@ SPEC CHECKSUMS:
   FirebaseFirestore: 52120e2833f804a874ba1a9f59aab864a8ae2286
   FirebaseInstanceID: ce993a3c3670a8f5d47ce371ac5d143c560608c5
   FirebaseStorage: 93fe2f8190a01bfb2b2c4932df7d679744c4ef1d
+  FLAnimatedImage: 4a0b56255d9b05f18b6dd7ee06871be5d3b89e31
   Flutter: 0e3d915762c693b495b44d77113d4970485de6ec
   GoogleAppMeasurement: db118eb61a97dd8c4f7014e368d3c335cbbcf80a
   GoogleDataTransport: 8e9b210c97d55fbff306cc5468ff91b9cb32dcf5
@@ -369,6 +422,8 @@ SPEC CHECKSUMS:
   GTMSessionFetcher: 43b8b64263023d4f32caa0b40f4c8bfa3c5f36d8
   leveldb-library: 55d93ee664b4007aac644a782d11da33fba316f7
   nanopb: 18003b5e52dab79db540fe93fe9579f399bd1ccd
+  SDWebImage: cf6922231e95550934da2ada0f20f2becf2ceba9
+  SDWebImageFLPlugin: 6c2295fb1242d44467c6c87dc5db6b0a13228fd8
   shared_preferences: af6bfa751691cdc24be3045c43ec037377ada40d
 
 PODFILE CHECKSUM: aafe91acc616949ddb318b77800a7f51bffa2a4c
