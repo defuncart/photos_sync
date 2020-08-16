@@ -13,6 +13,20 @@ import 'package:provider/provider.dart';
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key key}) : super(key: key);
 
+  static final _mapMenuItemCallback = <int, void Function(BuildContext)>{
+    0: (BuildContext context) async {
+      await context.read<IAuthService>().logout();
+      await UserPreferences.setUsername('');
+      Navigator.of(context).pushReplacementNamed(RouteNames.welcomeScreen);
+    },
+    1: (BuildContext context) async {
+      final photos = await context.read<IDatabaseService>().getPhotos(user: UserPreferences.getUsername());
+      for (final photo in photos) {
+        await context.read<ISyncService>().deleteFile(photo);
+      }
+    },
+  };
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -20,16 +34,17 @@ class HomeScreen extends StatelessWidget {
         actions: [
           PopupMenuButton<int>(
             icon: Icon(Icons.more_vert),
-            onSelected: (_) async {
-              await context.read<IAuthService>().logout();
-              await UserPreferences.setUsername('');
-              Navigator.of(context).pushReplacementNamed(RouteNames.welcomeScreen);
-            },
+            onSelected: (index) async => _mapMenuItemCallback[index](context),
             itemBuilder: (_) => [
+              PopupMenuItem(
+                value: 1,
+                child: Text(I18n.homeScreenDeleteAllButtonText),
+              ),
+              PopupMenuDivider(),
               PopupMenuItem(
                 value: 0,
                 child: Text(I18n.homeScreenLogoutButtonText),
-              )
+              ),
             ],
           ),
         ],
