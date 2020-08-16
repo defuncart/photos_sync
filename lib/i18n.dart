@@ -39,6 +39,20 @@ class I18n {
   static String get homeScreenLogoutButtonText =>
       _getText('homeScreenLogoutButtonText');
 
+  static String homeScreenUploadingText({
+    @required int completed,
+    @required int total,
+  }) {
+    String text = _getText('homeScreenUploadingText');
+    if (completed != null) {
+      text = text.replaceAll("%completed\$d", completed.toString());
+    }
+    if (total != null) {
+      text = text.replaceAll("%total\$d", total.toString());
+    }
+    return text;
+  }
+
   static String get errorPopupTitleText => _getText('errorPopupTitleText');
 
   static String get errorPopupDescriptionText =>
@@ -61,6 +75,7 @@ class I18n {
     'loginScreenMainButtonText': 'Fortfahren',
     'loginScreenSecondaryButtonText': 'Hast du noch nicht ein Konto?',
     'homeScreenLogoutButtonText': 'Ausloggen',
+    'homeScreenUploadingText': 'Uploading %completed\$d/%total\$d...',
     'errorPopupTitleText': 'Ooops',
     'errorPopupDescriptionText': 'Etwas ist schief gelaufen',
   };
@@ -80,6 +95,7 @@ class I18n {
     'loginScreenMainButtonText': 'Continue',
     'loginScreenSecondaryButtonText': 'Don\'t have an account?',
     'homeScreenLogoutButtonText': 'Logout',
+    'homeScreenUploadingText': 'Uploading %completed\$d/%total\$d...',
     'errorPopupTitleText': 'Ooops',
     'errorPopupDescriptionText': 'Something went wrong',
   };
