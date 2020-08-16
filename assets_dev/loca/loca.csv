@@ -1,2 +1,16 @@
 keys;description;de;en
-test;A test;Test DE;Test EN
+generalOk;General;Ok;Ok
+generalEmail;General;Email;Email
+generalPassword;General;Passwort;Password
+welcomeScreenDescriptionText;Welcome Screen;Synchronisier deine Bilder mit Remote-Server.;Easily sync your photos with a remote server.
+welcomeScreenSignupButtonText;Welcome Screen;Anmelden;Signup
+welcomeScreenLoginButtonText;Welcome Screen;Einloggen;Login
+singupScreenTitle;Signup Screen;Anmelden;Signup
+singupScreenMainButtonText;Signup Screen;Konto eröffnen;Create Account
+singupScreenSecondaryButtonText;Signup Screen;Hast du schon ein Konto?;Already have an account?
+loginScreenTitle;Login Screen;Einloggen;Login
+loginScreenMainButtonText;Login Screen;Fortfahren;Continue
+loginScreenSecondaryButtonText;Login Screen;Hast du noch nicht ein Konto?;Don't have an account?
+homeScreenLogoutButtonText;Home Screen;Ausloggen;Logout
+errorPopupTitleText;Error popup;Ooops;Ooops
+errorPopupDescriptionText;Error popup;Etwas ist schief gelaufen;Something went wrong
