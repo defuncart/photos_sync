@@ -11,7 +11,6 @@ class CustomButton extends StatelessWidget {
     this.isFilled = true,
     Key key,
   })  : assert(buttonText != null),
-        assert(onPressed != null),
         assert(isFilled != null),
         super(key: key);
 

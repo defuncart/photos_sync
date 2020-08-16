@@ -28,6 +28,7 @@ class _AuthScreenState extends State<AuthScreen> {
   String _email = '';
   String _password = '';
   bool _isEmailPasswordValid = false;
+  bool _shouldObscurePassword = true;
 
   @override
   Widget build(BuildContext context) {
@@ -62,7 +63,14 @@ class _AuthScreenState extends State<AuthScreen> {
                     _validateInput();
                   },
                   hintText: I18n.generalPassword,
-                  shouldObscureText: true,
+                  shouldObscureText: _shouldObscurePassword,
+                  suffixIcon: IconButton(
+                    icon: Icon(
+                      _shouldObscurePassword ? Icons.visibility : Icons.visibility_off,
+                      color: Colors.black,
+                    ),
+                    onPressed: () => setState(() => _shouldObscurePassword = !_shouldObscurePassword),
+                  ),
                 ),
                 // call to action
                 Expanded(
@@ -102,15 +110,17 @@ class _CustomTextField extends StatelessWidget {
   final Function(String) onChanged;
   final String hintText;
   final String errorText;
-  final bool shouldObscureText;
   final TextInputType keyboardType;
+  final bool shouldObscureText;
+  final Widget suffixIcon;
 
   const _CustomTextField({
     @required this.onChanged,
     @required this.hintText,
     this.errorText,
-    this.shouldObscureText = false,
     this.keyboardType = TextInputType.text,
+    this.shouldObscureText = false,
+    this.suffixIcon,
     Key key,
   })  : assert(onChanged != null),
         assert(hintText != null),
@@ -123,28 +133,28 @@ class _CustomTextField extends StatelessWidget {
     return TextField(
       onChanged: onChanged,
       decoration: InputDecoration(
-        border: OutlineInputBorder(
-          borderSide: BorderSide(
+          border: OutlineInputBorder(
+            borderSide: BorderSide(
+              color: Theme.of(context).disabledColor,
+            ),
+            borderRadius: const BorderRadius.all(
+              const Radius.circular(24.0),
+            ),
+          ),
+          focusedBorder: OutlineInputBorder(
+            borderSide: BorderSide(
+              color: Theme.of(context).accentColor,
+            ),
+            borderRadius: const BorderRadius.all(
+              const Radius.circular(24.0),
+            ),
+          ),
+          filled: false,
+          hintText: hintText,
+          hintStyle: TextStyle(
             color: Theme.of(context).disabledColor,
           ),
-          borderRadius: const BorderRadius.all(
-            const Radius.circular(24.0),
-          ),
-        ),
-        focusedBorder: OutlineInputBorder(
-          borderSide: BorderSide(
-            color: Theme.of(context).accentColor,
-          ),
-          borderRadius: const BorderRadius.all(
-            const Radius.circular(24.0),
-          ),
-        ),
-        filled: false,
-        hintText: hintText,
-        hintStyle: TextStyle(
-          color: Theme.of(context).disabledColor,
-        ),
-      ),
+          suffixIcon: suffixIcon),
       cursorColor: Theme.of(context).accentColor,
       obscureText: shouldObscureText,
       keyboardType: keyboardType,
