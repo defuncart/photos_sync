@@ -81,7 +81,12 @@ class _AuthScreenState extends State<AuthScreen> {
                       children: [
                         CustomButton(
                           buttonText: widget.mainButtonText,
-                          onPressed: _isEmailPasswordValid ? () => widget.onMainButtonPressed(_email, _password) : null,
+                          onPressed: _isEmailPasswordValid
+                              ? () {
+                                  FocusScope.of(context).unfocus();
+                                  widget.onMainButtonPressed(_email, _password);
+                                }
+                              : null,
                         ),
                         Container(height: 8),
                         FlatButton(

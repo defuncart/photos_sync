@@ -1,4 +1,5 @@
 keys;description;de;en
+generalOk;General;Ok;Ok
 generalEmail;General;Email;Email
 generalPassword;General;Passwort;Password
 welcomeScreenDescriptionText;Welcome Screen;Synchronisier deine Bilder mit Remote-Server.;Easily sync your photos with a remote server.
@@ -11,3 +12,5 @@ loginScreenTitle;Login Screen;Einloggen;Login
 loginScreenMainButtonText;Login Screen;Fortfahren;Continue
 loginScreenSecondaryButtonText;Login Screen;Hast du noch nicht ein Konto?;Don't have an account?
 homeScreenLogoutButtonText;Home Screen;Ausloggen;Logout
+errorPopupTitleText;Error popup;Ooops;Ooops
+errorPopupDescriptionText;Error popup;Etwas ist schief gelaufen;Something went wrong
