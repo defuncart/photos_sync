@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:photos_sync/i18n.dart';
+import 'package:photos_sync/services/validator.dart';
 import 'package:photos_sync/widgets/common/custom_button.dart';
 import 'package:photos_sync/widgets/common/resign_keyboard_on_background_tap.dart';
 
@@ -26,6 +27,7 @@ class AuthScreen extends StatefulWidget {
 class _AuthScreenState extends State<AuthScreen> {
   String _email = '';
   String _password = '';
+  bool _isEmailPasswordValid = false;
 
   @override
   Widget build(BuildContext context) {
@@ -46,12 +48,19 @@ class _AuthScreenState extends State<AuthScreen> {
                 ),
                 Container(height: 32),
                 _CustomTextField(
-                  onChanged: (value) => _email = value,
+                  onChanged: (value) {
+                    _email = value;
+                    _validateInput();
+                  },
                   hintText: I18n.generalEmail,
+                  keyboardType: TextInputType.emailAddress,
                 ),
                 Container(height: 16),
                 _CustomTextField(
-                  onChanged: (value) => _password = value,
+                  onChanged: (value) {
+                    _password = value;
+                    _validateInput();
+                  },
                   hintText: I18n.generalPassword,
                   shouldObscureText: true,
                 ),
@@ -64,7 +73,7 @@ class _AuthScreenState extends State<AuthScreen> {
                       children: [
                         CustomButton(
                           buttonText: widget.mainButtonText,
-                          onPressed: () => widget.onMainButtonPressed(_email, _password),
+                          onPressed: _isEmailPasswordValid ? () => widget.onMainButtonPressed(_email, _password) : null,
                         ),
                         Container(height: 8),
                         FlatButton(
@@ -83,6 +92,10 @@ class _AuthScreenState extends State<AuthScreen> {
       ),
     );
   }
+
+  void _validateInput() => setState(
+        () => _isEmailPasswordValid = Validator.isValidEmail(_email) && Validator.isValidPassword(_password),
+      );
 }
 
 class _CustomTextField extends StatelessWidget {
@@ -99,7 +112,11 @@ class _CustomTextField extends StatelessWidget {
     this.shouldObscureText = false,
     this.keyboardType = TextInputType.text,
     Key key,
-  }) : super(key: key);
+  })  : assert(onChanged != null),
+        assert(hintText != null),
+        assert(shouldObscureText != null),
+        assert(keyboardType != null),
+        super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -130,6 +147,8 @@ class _CustomTextField extends StatelessWidget {
       ),
       cursorColor: Theme.of(context).accentColor,
       obscureText: shouldObscureText,
+      keyboardType: keyboardType,
+      autocorrect: false,
     );
   }
 }
