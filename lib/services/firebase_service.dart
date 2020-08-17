@@ -6,7 +6,6 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:http/http.dart' as http;
 import 'package:meta/meta.dart';
 import 'package:path/path.dart' as path;
-import 'package:photos_sync/configs/firebase_settings.dart';
 import 'package:photos_sync/modules/backend/backend.dart';
 
 /// A concrete implementation of IAuthService, ISyncService and IDatabaseService using Firebase
@@ -70,22 +69,32 @@ class FirebaseService implements IAuthService, ISyncService, IDatabaseService {
           contentType: contentType,
         ),
       );
-      await uploadTask.onComplete;
+      final result = await uploadTask.onComplete;
+      if (result.error == null) {
+        await addPhoto(photo);
 
-      await addPhoto(photo);
-
-      return true;
+        return true;
+      }
     }
 
     return false;
   }
 
-  /// Determines a file's url
-  Future<String> getFileUrl(SyncedPhoto photo) async {
-    final url = _urlForPhoto(photo);
-    final storageReference = await FirebaseStorage.instance.getReferenceFromUrl(url);
+  /// Downloads a file
+  Future<File> downloadFile(SyncedPhoto photo) async {
+    final storageReference = FirebaseStorage.instance.ref().child(_filepathForPhoto(photo));
     try {
-      return await storageReference.getDownloadURL();
+      final url = await storageReference.getDownloadURL();
+      if (url != null) {
+        try {
+          final response = await http.get(url);
+          if (response != null) {
+            return File.fromRawPath(response.bodyBytes);
+          }
+        } catch (e) {
+          print(e);
+        }
+      }
     } catch (e) {
       print(e);
     }
@@ -93,27 +102,9 @@ class FirebaseService implements IAuthService, ISyncService, IDatabaseService {
     return null;
   }
 
-  /// Downloads a file
-  Future<File> downloadFile(SyncedPhoto photo) async {
-    final url = await getFileUrl(photo);
-    if (url != null) {
-      try {
-        final response = await http.get(url);
-        if (response != null) {
-          return File.fromRawPath(response.bodyBytes);
-        }
-      } catch (e) {
-        print(e);
-      }
-    }
-
-    return null;
-  }
-
   /// Deletes a file
   Future<void> deleteFile(SyncedPhoto photo) async {
-    final url = _urlForPhoto(photo);
-    final storageReference = await FirebaseStorage.instance.getReferenceFromUrl(url);
+    final storageReference = FirebaseStorage.instance.ref().child(_filepathForPhoto(photo));
     try {
       await storageReference.delete();
 
@@ -122,9 +113,6 @@ class FirebaseService implements IAuthService, ISyncService, IDatabaseService {
       print(e);
     }
   }
-
-  /// Returns the url for a synced photo
-  String _urlForPhoto(SyncedPhoto photo) => FirebaseSettings.baseUrlPath + _filepathForPhoto(photo);
 
   /// Returns the storage filepath  for a synced photo
   String _filepathForPhoto(SyncedPhoto photo) => '${photo.user}/${photo.folder}/${photo.filename}';

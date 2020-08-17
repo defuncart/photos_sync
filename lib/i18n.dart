@@ -36,8 +36,28 @@ class I18n {
   static String get loginScreenSecondaryButtonText =>
       _getText('loginScreenSecondaryButtonText');
 
+  static String get homeScreenDeleteAllButtonText =>
+      _getText('homeScreenDeleteAllButtonText');
+
+  static String get homeScreenChoosePhotosButtonText =>
+      _getText('homeScreenChoosePhotosButtonText');
+
   static String get homeScreenLogoutButtonText =>
       _getText('homeScreenLogoutButtonText');
+
+  static String homeScreenUploadingText({
+    @required int completed,
+    @required int total,
+  }) {
+    String text = _getText('homeScreenUploadingText');
+    if (completed != null) {
+      text = text.replaceAll("%completed\$d", completed.toString());
+    }
+    if (total != null) {
+      text = text.replaceAll("%total\$d", total.toString());
+    }
+    return text;
+  }
 
   static String get errorPopupTitleText => _getText('errorPopupTitleText');
 
@@ -51,16 +71,19 @@ class I18n {
     'generalEmail': 'Email',
     'generalPassword': 'Passwort',
     'welcomeScreenDescriptionText':
-        'Synchronisier deine Bilder mit Remote-Server.',
+        'Synchronisier deine Bilder mit einem Remote-Server.',
     'welcomeScreenSignupButtonText': 'Anmelden',
     'welcomeScreenLoginButtonText': 'Einloggen',
     'singupScreenTitle': 'Anmelden',
     'singupScreenMainButtonText': 'Konto eröffnen',
-    'singupScreenSecondaryButtonText': 'Hast du schon ein Konto?',
+    'singupScreenSecondaryButtonText': 'Du hast schon ein Konto?',
     'loginScreenTitle': 'Einloggen',
     'loginScreenMainButtonText': 'Fortfahren',
-    'loginScreenSecondaryButtonText': 'Hast du noch nicht ein Konto?',
+    'loginScreenSecondaryButtonText': 'Du hast noch kein Konto?',
+    'homeScreenDeleteAllButtonText': 'Alle Bilder löschen',
+    'homeScreenChoosePhotosButtonText': 'Photos auswählen',
     'homeScreenLogoutButtonText': 'Ausloggen',
+    'homeScreenUploadingText': 'Uploading %completed\$d/%total\$d...',
     'errorPopupTitleText': 'Ooops',
     'errorPopupDescriptionText': 'Etwas ist schief gelaufen',
   };
@@ -79,7 +102,10 @@ class I18n {
     'loginScreenTitle': 'Login',
     'loginScreenMainButtonText': 'Continue',
     'loginScreenSecondaryButtonText': 'Don\'t have an account?',
+    'homeScreenDeleteAllButtonText': 'Delete all photos',
+    'homeScreenChoosePhotosButtonText': 'Choose photos',
     'homeScreenLogoutButtonText': 'Logout',
+    'homeScreenUploadingText': 'Uploading %completed\$d/%total\$d...',
     'errorPopupTitleText': 'Ooops',
     'errorPopupDescriptionText': 'Something went wrong',
   };

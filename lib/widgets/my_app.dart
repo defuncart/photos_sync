@@ -37,6 +37,7 @@ class MyApp extends StatelessWidget {
         ],
         supportedLocales: I18nDelegate.supportedLocals,
         theme: ThemeData.light().copyWith(
+          primaryColor: Colors.black,
           accentColor: Colors.pink[700],
           scaffoldBackgroundColor: Colors.white,
         ),
