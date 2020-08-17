@@ -9,9 +9,6 @@ abstract class ISyncService {
   /// Uploads a file
   Future<bool> uploadFile(File file, {@required SyncedPhoto photo});
 
-  /// Determines a file's url
-  Future<String> getFileUrl(SyncedPhoto photo);
-
   /// Downloads a file
   Future<File> downloadFile(SyncedPhoto photo);
 
