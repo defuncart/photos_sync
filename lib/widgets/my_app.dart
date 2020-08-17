@@ -8,6 +8,7 @@ import 'package:photos_sync/services/firebase_service.dart';
 import 'package:photos_sync/widgets/auth/login_screen.dart';
 import 'package:photos_sync/widgets/auth/signup_screen.dart';
 import 'package:photos_sync/widgets/home_screen/home_screen.dart';
+import 'package:photos_sync/widgets/synced_photos_screen/synced_photos_screen.dart';
 import 'package:photos_sync/widgets/welcome_screen/welcome_screen.dart';
 import 'package:provider/provider.dart';
 
@@ -42,12 +43,12 @@ class MyApp extends StatelessWidget {
           scaffoldBackgroundColor: Colors.white,
         ),
         home: UserPreferences.getIsLoggedIn() ? HomeScreen() : WelcomeScreen(),
-        // home: SignupScreen(),
         routes: {
           RouteNames.welcomeScreen: (_) => WelcomeScreen(),
           RouteNames.signupScreen: (_) => SignupScreen(),
           RouteNames.loginScreen: (_) => LoginScreen(),
           RouteNames.homeScreen: (_) => HomeScreen(),
+          RouteNames.syncedPhotosScreen: (_) => SyncedPhotosScreen(),
         },
       ),
     );

@@ -11,9 +11,10 @@ singupScreenSecondaryButtonText;Signup Screen;Du hast schon ein Konto?;Already h
 loginScreenTitle;Login Screen;Einloggen;Login
 loginScreenMainButtonText;Login Screen;Fortfahren;Continue
 loginScreenSecondaryButtonText;Login Screen;Du hast noch kein Konto?;Don't have an account?
-homeScreenDeleteAllButtonText;Home Screen;Alle Bilder löschen;Delete all photos
+homeScreenSyncedPhotosButtonText;Home Screen;Synchronisierte Bilder anschauen;View synced photos
 homeScreenChoosePhotosButtonText;Home Screen;Photos auswählen;Choose photos
 homeScreenLogoutButtonText;Home Screen;Ausloggen;Logout
 homeScreenUploadingText;Home Screen;Uploading %completed$d/%total$d...;Uploading %completed$d/%total$d...
+syncedPhotosScreenDeleteAllButtonText;Home Screen;Alle Bilder löschen;Delete all photos
 errorPopupTitleText;Error popup;Ooops;Ooops
 errorPopupDescriptionText;Error popup;Etwas ist schief gelaufen;Something went wrong

@@ -36,8 +36,8 @@ class I18n {
   static String get loginScreenSecondaryButtonText =>
       _getText('loginScreenSecondaryButtonText');
 
-  static String get homeScreenDeleteAllButtonText =>
-      _getText('homeScreenDeleteAllButtonText');
+  static String get homeScreenSyncedPhotosButtonText =>
+      _getText('homeScreenSyncedPhotosButtonText');
 
   static String get homeScreenChoosePhotosButtonText =>
       _getText('homeScreenChoosePhotosButtonText');
@@ -58,6 +58,9 @@ class I18n {
     }
     return text;
   }
+
+  static String get syncedPhotosScreenDeleteAllButtonText =>
+      _getText('syncedPhotosScreenDeleteAllButtonText');
 
   static String get errorPopupTitleText => _getText('errorPopupTitleText');
 
@@ -80,10 +83,11 @@ class I18n {
     'loginScreenTitle': 'Einloggen',
     'loginScreenMainButtonText': 'Fortfahren',
     'loginScreenSecondaryButtonText': 'Du hast noch kein Konto?',
-    'homeScreenDeleteAllButtonText': 'Alle Bilder löschen',
+    'homeScreenSyncedPhotosButtonText': 'Synchronisierte Bilder anschauen',
     'homeScreenChoosePhotosButtonText': 'Photos auswählen',
     'homeScreenLogoutButtonText': 'Ausloggen',
     'homeScreenUploadingText': 'Uploading %completed\$d/%total\$d...',
+    'syncedPhotosScreenDeleteAllButtonText': 'Alle Bilder löschen',
     'errorPopupTitleText': 'Ooops',
     'errorPopupDescriptionText': 'Etwas ist schief gelaufen',
   };
@@ -102,10 +106,11 @@ class I18n {
     'loginScreenTitle': 'Login',
     'loginScreenMainButtonText': 'Continue',
     'loginScreenSecondaryButtonText': 'Don\'t have an account?',
-    'homeScreenDeleteAllButtonText': 'Delete all photos',
+    'homeScreenSyncedPhotosButtonText': 'View synced photos',
     'homeScreenChoosePhotosButtonText': 'Choose photos',
     'homeScreenLogoutButtonText': 'Logout',
     'homeScreenUploadingText': 'Uploading %completed\$d/%total\$d...',
+    'syncedPhotosScreenDeleteAllButtonText': 'Delete all photos',
     'errorPopupTitleText': 'Ooops',
     'errorPopupDescriptionText': 'Something went wrong',
   };
