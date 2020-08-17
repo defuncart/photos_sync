@@ -8,6 +8,7 @@ import 'package:photos_sync/i18n.dart';
 import 'package:photos_sync/modules/backend/backend.dart';
 import 'package:photos_sync/modules/user_preferences/user_preferences.dart';
 import 'package:photos_sync/widgets/common/custom_button.dart';
+import 'package:photos_sync/widgets/common/error_dialog.dart';
 import 'package:provider/provider.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -110,7 +111,11 @@ class __HomePageContentState extends State<_HomePageContent> {
     });
 
     for (final photoToUpload in photosToUpload) {
-      await context.read<ISyncService>().uploadFile(photoToUpload.file, photo: photoToUpload.photo);
+      final success = await context.read<ISyncService>().uploadFile(photoToUpload.file, photo: photoToUpload.photo);
+      if (!success) {
+        showErrorDialog(context);
+        break;
+      }
 
       setState(() {
         _photosUploaded++;

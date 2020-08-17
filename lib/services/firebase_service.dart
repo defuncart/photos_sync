@@ -70,11 +70,12 @@ class FirebaseService implements IAuthService, ISyncService, IDatabaseService {
           contentType: contentType,
         ),
       );
-      await uploadTask.onComplete;
+      final result = await uploadTask.onComplete;
+      if (result.error == null) {
+        await addPhoto(photo);
 
-      await addPhoto(photo);
-
-      return true;
+        return true;
+      }
     }
 
     return false;
