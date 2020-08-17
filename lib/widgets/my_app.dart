@@ -41,6 +41,7 @@ class MyApp extends StatelessWidget {
           primaryColor: Colors.black,
           accentColor: Colors.pink[700],
           scaffoldBackgroundColor: Colors.white,
+          backgroundColor: Colors.pink[700],
         ),
         home: UserPreferences.getIsLoggedIn() ? HomeScreen() : WelcomeScreen(),
         routes: {
