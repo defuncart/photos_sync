@@ -79,8 +79,7 @@ class __HomePageContentState extends State<_HomePageContent> {
                 buttonText: I18n.homeScreenChoosePhotosButtonText,
                 onPressed: () async {
                   final files = await FilePicker.getMultiFile(
-                    type: FileType.custom,
-                    allowedExtensions: ['jpg', 'jpeg', 'png'],
+                    type: FileType.image,
                   );
 
                   if (files != null && files.isNotEmpty) {
