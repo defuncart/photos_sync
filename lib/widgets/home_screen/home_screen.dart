@@ -76,7 +76,7 @@ class __HomePageContentState extends State<_HomePageContent> {
         child: _isUploading
             ? Text(I18n.homeScreenUploadingText(completed: _photosUploaded, total: _photosToUpload))
             : CustomButton(
-                buttonText: 'Sync',
+                buttonText: I18n.homeScreenChoosePhotosButtonText,
                 onPressed: () async {
                   final files = await FilePicker.getMultiFile(
                     type: FileType.custom,

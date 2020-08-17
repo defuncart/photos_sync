@@ -39,6 +39,9 @@ class I18n {
   static String get homeScreenDeleteAllButtonText =>
       _getText('homeScreenDeleteAllButtonText');
 
+  static String get homeScreenChoosePhotosButtonText =>
+      _getText('homeScreenChoosePhotosButtonText');
+
   static String get homeScreenLogoutButtonText =>
       _getText('homeScreenLogoutButtonText');
 
@@ -78,6 +81,7 @@ class I18n {
     'loginScreenMainButtonText': 'Fortfahren',
     'loginScreenSecondaryButtonText': 'Du hast noch kein Konto?',
     'homeScreenDeleteAllButtonText': 'Alle Bilder löschen',
+    'homeScreenChoosePhotosButtonText': 'Photos auswählen',
     'homeScreenLogoutButtonText': 'Ausloggen',
     'homeScreenUploadingText': 'Uploading %completed\$d/%total\$d...',
     'errorPopupTitleText': 'Ooops',
@@ -99,6 +103,7 @@ class I18n {
     'loginScreenMainButtonText': 'Continue',
     'loginScreenSecondaryButtonText': 'Don\'t have an account?',
     'homeScreenDeleteAllButtonText': 'Delete all photos',
+    'homeScreenChoosePhotosButtonText': 'Choose photos',
     'homeScreenLogoutButtonText': 'Logout',
     'homeScreenUploadingText': 'Uploading %completed\$d/%total\$d...',
     'errorPopupTitleText': 'Ooops',
