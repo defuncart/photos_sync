@@ -34,5 +34,12 @@ class SyncedPhoto {
       };
 
   @override
+  bool operator ==(dynamic other) =>
+      other is SyncedPhoto && user == other.user && absoluteFilepath == other.absoluteFilepath;
+
+  @override
+  int get hashCode => user.hashCode ^ absoluteFilepath.hashCode;
+
+  @override
   String toString() => toJson().toString();
 }

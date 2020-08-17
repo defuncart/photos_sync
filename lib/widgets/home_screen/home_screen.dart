@@ -84,6 +84,8 @@ class __HomePageContentState extends State<_HomePageContent> {
                   );
 
                   if (files != null && files.isNotEmpty) {
+                    final photosOnServer =
+                        await context.read<IDatabaseService>().getPhotos(user: UserPreferences.getUsername());
                     final photosToUpload = <_PhotoToUpload>[];
                     for (final file in files) {
                       final photo = SyncedPhoto(
@@ -92,10 +94,16 @@ class __HomePageContentState extends State<_HomePageContent> {
                         filename: basename(file.path),
                         absoluteFilepath: file.path,
                       );
-                      photosToUpload.add(_PhotoToUpload(file: file, photo: photo));
+                      if (!photosOnServer.contains(photo)) {
+                        photosToUpload.add(_PhotoToUpload(file: file, photo: photo));
+                      } else {
+                        // TODO notify user already on server
+                      }
                     }
 
-                    await _uploadPhotos(photosToUpload, context);
+                    if (photosToUpload.isNotEmpty) {
+                      await _uploadPhotos(photosToUpload, context);
+                    }
                   }
                 },
               ),
