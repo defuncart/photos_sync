@@ -2,10 +2,25 @@ import 'package:flutter/material.dart';
 import 'package:photos_sync/i18n.dart';
 import 'package:photos_sync/modules/backend/backend.dart';
 import 'package:photos_sync/modules/user_preferences/user_preferences.dart';
+import 'package:photos_sync/widgets/common/confirm_dialog.dart';
 import 'package:provider/provider.dart';
 
-class SyncedPhotosScreen extends StatelessWidget {
+class SyncedPhotosScreen extends StatefulWidget {
   const SyncedPhotosScreen({Key key}) : super(key: key);
+
+  @override
+  _SyncedPhotosScreenState createState() => _SyncedPhotosScreenState();
+}
+
+class _SyncedPhotosScreenState extends State<SyncedPhotosScreen> {
+  Future<List<SyncedPhoto>> _syncedPhotosFuture;
+
+  @override
+  void initState() {
+    super.initState();
+
+    _syncedPhotosFuture = context.read<IDatabaseService>().getPhotos(user: UserPreferences.getUsername());
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -15,9 +30,20 @@ class SyncedPhotosScreen extends StatelessWidget {
           PopupMenuButton<int>(
             icon: Icon(Icons.more_vert),
             onSelected: (_) async {
-              final photos = await context.read<IDatabaseService>().getPhotos(user: UserPreferences.getUsername());
-              for (final photo in photos) {
-                await context.read<ISyncService>().deleteFile(photo);
+              final shouldDeleteAll = await showConfirmDialog(
+                context: context,
+                title: I18n.syncAllPhotosPopupTitleText,
+                description: I18n.syncAllPhotosPopupDescriptionText,
+              );
+              if (shouldDeleteAll) {
+                final photos = await context.read<IDatabaseService>().getPhotos(user: UserPreferences.getUsername());
+                for (final photo in photos) {
+                  await context.read<ISyncService>().deleteFile(photo);
+                }
+
+                setState(() {
+                  _syncedPhotosFuture = context.read<IDatabaseService>().getPhotos(user: UserPreferences.getUsername());
+                });
               }
             },
             itemBuilder: (_) => [
@@ -30,7 +56,7 @@ class SyncedPhotosScreen extends StatelessWidget {
         ],
       ),
       body: FutureBuilder(
-        future: context.watch<IDatabaseService>().getPhotos(user: UserPreferences.getUsername()),
+        future: _syncedPhotosFuture,
         builder: (_, AsyncSnapshot<List<SyncedPhoto>> snapshot) {
           switch (snapshot.connectionState) {
             case ConnectionState.waiting:
@@ -61,8 +87,12 @@ class SyncedPhotosScreen extends StatelessWidget {
                         ),
                       ),
                     ),
-                    onDismissed: (direction) {},
-                    confirmDismiss: (direction) async => true,
+                    onDismissed: (_) => context.read<ISyncService>().deleteFile(snapshot.data[index]),
+                    confirmDismiss: (_) async => await showConfirmDialog(
+                      context: context,
+                      title: I18n.syncSinglePhotoPopupTitleText,
+                      description: I18n.syncSinglePhotoPopupDescriptionText,
+                    ),
                   ),
                 );
               } else {
