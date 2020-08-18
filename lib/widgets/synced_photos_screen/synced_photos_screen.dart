@@ -30,33 +30,49 @@ class SyncedPhotosScreen extends StatelessWidget {
         ],
       ),
       body: FutureBuilder(
-          future: context.watch<IDatabaseService>().getPhotos(user: UserPreferences.getUsername()),
-          builder: (_, AsyncSnapshot<List<SyncedPhoto>> snapshot) {
-            switch (snapshot.connectionState) {
-              case ConnectionState.waiting:
-              case ConnectionState.active:
-                return Center(
-                  child: CircularProgressIndicator(),
-                );
-              default:
-                if (snapshot.connectionState == ConnectionState.done && snapshot.hasData) {
-                  snapshot.data.sort((a, b) => a.absoluteFilepath.compareTo(b.absoluteFilepath));
-                  return ListView.builder(
-                    itemCount: snapshot.data.length,
-                    itemBuilder: (_, index) => ListTile(
+        future: context.watch<IDatabaseService>().getPhotos(user: UserPreferences.getUsername()),
+        builder: (_, AsyncSnapshot<List<SyncedPhoto>> snapshot) {
+          switch (snapshot.connectionState) {
+            case ConnectionState.waiting:
+            case ConnectionState.active:
+              return Center(
+                child: CircularProgressIndicator(),
+              );
+            default:
+              if (snapshot.connectionState == ConnectionState.done && snapshot.hasData) {
+                snapshot.data.sort((a, b) => a.absoluteFilepath.compareTo(b.absoluteFilepath));
+                return ListView.builder(
+                  itemCount: snapshot.data.length,
+                  itemBuilder: (_, index) => Dismissible(
+                    key: Key(snapshot.data[index].absoluteFilepath),
+                    direction: DismissDirection.endToStart,
+                    child: ListTile(
                       title: Text(snapshot.data[index].filename),
                       subtitle: Text(snapshot.data[index].absoluteFilepath),
                     ),
-                  );
-                } else {
-                  return Center(
-                    child: Text(I18n.errorPopupDescriptionText),
-                  );
-                }
-            }
-
-            return Container();
-          }),
+                    background: Container(
+                      alignment: AlignmentDirectional.centerEnd,
+                      color: Colors.red,
+                      child: Padding(
+                        padding: EdgeInsets.fromLTRB(0.0, 0.0, 10.0, 0.0),
+                        child: Icon(
+                          Icons.delete,
+                          color: Colors.white,
+                        ),
+                      ),
+                    ),
+                    onDismissed: (direction) {},
+                    confirmDismiss: (direction) async => true,
+                  ),
+                );
+              } else {
+                return Center(
+                  child: Text(I18n.errorPopupDescriptionText),
+                );
+              }
+          }
+        },
+      ),
     );
   }
 }
