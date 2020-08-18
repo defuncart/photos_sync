@@ -7,6 +7,10 @@ import 'package:flutter/material.dart';
 class I18n {
   static String get generalOk => _getText('generalOk');
 
+  static String get generalYes => _getText('generalYes');
+
+  static String get generalNo => _getText('generalNo');
+
   static String get generalEmail => _getText('generalEmail');
 
   static String get generalPassword => _getText('generalPassword');
@@ -67,10 +71,24 @@ class I18n {
   static String get errorPopupDescriptionText =>
       _getText('errorPopupDescriptionText');
 
+  static String get syncSinglePhotoPopupTitleText =>
+      _getText('syncSinglePhotoPopupTitleText');
+
+  static String get syncSinglePhotoPopupDescriptionText =>
+      _getText('syncSinglePhotoPopupDescriptionText');
+
+  static String get syncAllPhotosPopupTitleText =>
+      _getText('syncAllPhotosPopupTitleText');
+
+  static String get syncAllPhotosPopupDescriptionText =>
+      _getText('syncAllPhotosPopupDescriptionText');
+
   static Map<String, String> _localizedValues;
 
   static Map<String, String> _deValues = {
     'generalOk': 'Ok',
+    'generalYes': 'Ja',
+    'generalNo': 'Nein',
     'generalEmail': 'Email',
     'generalPassword': 'Passwort',
     'welcomeScreenDescriptionText':
@@ -90,10 +108,18 @@ class I18n {
     'syncedPhotosScreenDeleteAllButtonText': 'Alle Bilder löschen',
     'errorPopupTitleText': 'Ooops',
     'errorPopupDescriptionText': 'Etwas ist schief gelaufen',
+    'syncSinglePhotoPopupTitleText': 'Sync-Einstellungen',
+    'syncSinglePhotoPopupDescriptionText':
+        'Möchtest du die Synchronisierung dieses Bilds beenden?',
+    'syncAllPhotosPopupTitleText': 'Sync-Einstellungen',
+    'syncAllPhotosPopupDescriptionText':
+        'Möchtest du die Synchronisierung der Bilder beenden?',
   };
 
   static Map<String, String> _enValues = {
     'generalOk': 'Ok',
+    'generalYes': 'Yes',
+    'generalNo': 'No',
     'generalEmail': 'Email',
     'generalPassword': 'Password',
     'welcomeScreenDescriptionText':
@@ -113,6 +139,12 @@ class I18n {
     'syncedPhotosScreenDeleteAllButtonText': 'Delete all photos',
     'errorPopupTitleText': 'Ooops',
     'errorPopupDescriptionText': 'Something went wrong',
+    'syncSinglePhotoPopupTitleText': 'Sync settings',
+    'syncSinglePhotoPopupDescriptionText':
+        'Do you want to stop synchronizing this photo?',
+    'syncAllPhotosPopupTitleText': 'Sync settings',
+    'syncAllPhotosPopupDescriptionText':
+        'Do you want to stop synchronizing all photos?',
   };
 
   static Map<String, Map<String, String>> _allValues = {

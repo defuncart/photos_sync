@@ -1,5 +1,7 @@
 keys;description;de;en
 generalOk;General;Ok;Ok
+generalYes;General;Ja;Yes
+generalNo;General;Nein;No
 generalEmail;General;Email;Email
 generalPassword;General;Passwort;Password
 welcomeScreenDescriptionText;Welcome Screen;Synchronisier deine Bilder mit einem Remote-Server.;Easily sync your photos with a remote server.
@@ -18,3 +20,7 @@ homeScreenUploadingText;Home Screen;Uploading %completed$d/%total$d...;Uploading
 syncedPhotosScreenDeleteAllButtonText;Home Screen;Alle Bilder löschen;Delete all photos
 errorPopupTitleText;Error popup;Ooops;Ooops
 errorPopupDescriptionText;Error popup;Etwas ist schief gelaufen;Something went wrong
+syncSinglePhotoPopupTitleText;Error popup;Sync-Einstellungen;Sync settings
+syncSinglePhotoPopupDescriptionText;Error popup;Möchtest du die Synchronisierung dieses Bilds beenden?;Do you want to stop synchronizing this photo?
+syncAllPhotosPopupTitleText;Error popup;Sync-Einstellungen;Sync settings
+syncAllPhotosPopupDescriptionText;Error popup;Möchtest du die Synchronisierung der Bilder beenden?;Do you want to stop synchronizing all photos?
