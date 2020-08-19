@@ -16,6 +16,7 @@ dependencies:
   provider: ^4.3.2
   http: ^0.12.2
   shared_preferences: ^0.5.8
+  path_provider: ^1.6.11
   # google
   firebase_auth: 0.16.1
   cloud_firestore: 0.13.7
@@ -42,3 +43,4 @@ flappy_translator:
   depend_on_context: false
   use_single_quotes: true
   replace_no_break_spaces: false
+
