@@ -18,12 +18,7 @@ class HomeScreen extends StatelessWidget {
       await UserPreferences.setUsername('');
       Navigator.of(context).pushReplacementNamed(RouteNames.welcomeScreen);
     },
-    1: (BuildContext context) async {
-      final photos = await context.read<IDatabaseService>().getPhotos(user: UserPreferences.getUsername());
-      for (final photo in photos) {
-        await context.read<ISyncService>().deleteFile(photo);
-      }
-    },
+    1: (BuildContext context) => Navigator.of(context).pushNamed(RouteNames.syncedPhotosScreen),
   };
 
   @override
@@ -37,7 +32,7 @@ class HomeScreen extends StatelessWidget {
             itemBuilder: (_) => [
               PopupMenuItem(
                 value: 1,
-                child: Text(I18n.homeScreenDeleteAllButtonText),
+                child: Text(I18n.homeScreenSyncedPhotosButtonText),
               ),
               PopupMenuDivider(),
               PopupMenuItem(

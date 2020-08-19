@@ -7,6 +7,10 @@ import 'package:flutter/material.dart';
 class I18n {
   static String get generalOk => _getText('generalOk');
 
+  static String get generalYes => _getText('generalYes');
+
+  static String get generalNo => _getText('generalNo');
+
   static String get generalEmail => _getText('generalEmail');
 
   static String get generalPassword => _getText('generalPassword');
@@ -36,8 +40,8 @@ class I18n {
   static String get loginScreenSecondaryButtonText =>
       _getText('loginScreenSecondaryButtonText');
 
-  static String get homeScreenDeleteAllButtonText =>
-      _getText('homeScreenDeleteAllButtonText');
+  static String get homeScreenSyncedPhotosButtonText =>
+      _getText('homeScreenSyncedPhotosButtonText');
 
   static String get homeScreenChoosePhotosButtonText =>
       _getText('homeScreenChoosePhotosButtonText');
@@ -76,15 +80,32 @@ class I18n {
     return text;
   }
 
+  static String get syncedPhotosScreenDeleteAllButtonText =>
+      _getText('syncedPhotosScreenDeleteAllButtonText');
+
   static String get errorPopupTitleText => _getText('errorPopupTitleText');
 
   static String get errorPopupDescriptionText =>
       _getText('errorPopupDescriptionText');
 
+  static String get syncSinglePhotoPopupTitleText =>
+      _getText('syncSinglePhotoPopupTitleText');
+
+  static String get syncSinglePhotoPopupDescriptionText =>
+      _getText('syncSinglePhotoPopupDescriptionText');
+
+  static String get syncAllPhotosPopupTitleText =>
+      _getText('syncAllPhotosPopupTitleText');
+
+  static String get syncAllPhotosPopupDescriptionText =>
+      _getText('syncAllPhotosPopupDescriptionText');
+
   static Map<String, String> _localizedValues;
 
   static Map<String, String> _deValues = {
     'generalOk': 'Ok',
+    'generalYes': 'Ja',
+    'generalNo': 'Nein',
     'generalEmail': 'Email',
     'generalPassword': 'Passwort',
     'welcomeScreenDescriptionText':
@@ -97,19 +118,28 @@ class I18n {
     'loginScreenTitle': 'Einloggen',
     'loginScreenMainButtonText': 'Fortfahren',
     'loginScreenSecondaryButtonText': 'Du hast noch kein Konto?',
-    'homeScreenDeleteAllButtonText': 'Alle Bilder löschen',
+    'homeScreenSyncedPhotosButtonText': 'Synchronisierte Bilder anschauen',
     'homeScreenChoosePhotosButtonText': 'Photos auswählen',
     'homeScreenLogoutButtonText': 'Ausloggen',
     'homeScreenUploadingText': 'Uploading %completed\$d/%total\$d...',
     'downloaderScreenSyncButtonText': 'Sync',
     'downloaderScreenDownloadingText':
         'Synchronisieren %completed\$d/%total\$d...',
+    'syncedPhotosScreenDeleteAllButtonText': 'Alle Bilder löschen',
     'errorPopupTitleText': 'Ooops',
     'errorPopupDescriptionText': 'Etwas ist schief gelaufen',
+    'syncSinglePhotoPopupTitleText': 'Sync-Einstellungen',
+    'syncSinglePhotoPopupDescriptionText':
+        'Möchtest du die Synchronisierung dieses Bilds beenden?',
+    'syncAllPhotosPopupTitleText': 'Sync-Einstellungen',
+    'syncAllPhotosPopupDescriptionText':
+        'Möchtest du die Synchronisierung der Bilder beenden?',
   };
 
   static Map<String, String> _enValues = {
     'generalOk': 'Ok',
+    'generalYes': 'Yes',
+    'generalNo': 'No',
     'generalEmail': 'Email',
     'generalPassword': 'Password',
     'welcomeScreenDescriptionText':
@@ -122,14 +152,21 @@ class I18n {
     'loginScreenTitle': 'Login',
     'loginScreenMainButtonText': 'Continue',
     'loginScreenSecondaryButtonText': 'Don\'t have an account?',
-    'homeScreenDeleteAllButtonText': 'Delete all photos',
+    'homeScreenSyncedPhotosButtonText': 'View synced photos',
     'homeScreenChoosePhotosButtonText': 'Choose photos',
     'homeScreenLogoutButtonText': 'Logout',
     'homeScreenUploadingText': 'Uploading %completed\$d/%total\$d...',
     'downloaderScreenSyncButtonText': 'Sync',
     'downloaderScreenDownloadingText': 'Syncing %completed\$d/%total\$d...',
+    'syncedPhotosScreenDeleteAllButtonText': 'Delete all photos',
     'errorPopupTitleText': 'Ooops',
     'errorPopupDescriptionText': 'Something went wrong',
+    'syncSinglePhotoPopupTitleText': 'Sync settings',
+    'syncSinglePhotoPopupDescriptionText':
+        'Do you want to stop synchronizing this photo?',
+    'syncAllPhotosPopupTitleText': 'Sync settings',
+    'syncAllPhotosPopupDescriptionText':
+        'Do you want to stop synchronizing all photos?',
   };
 
   static Map<String, Map<String, String>> _allValues = {
