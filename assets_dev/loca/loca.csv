@@ -1,5 +1,7 @@
 keys;description;de;en
 generalOk;General;Ok;Ok
+generalYes;General;Ja;Yes
+generalNo;General;Nein;No
 generalEmail;General;Email;Email
 generalPassword;General;Passwort;Password
 welcomeScreenDescriptionText;Welcome Screen;Synchronisier deine Bilder mit einem Remote-Server.;Easily sync your photos with a remote server.
@@ -11,9 +13,14 @@ singupScreenSecondaryButtonText;Signup Screen;Du hast schon ein Konto?;Already h
 loginScreenTitle;Login Screen;Einloggen;Login
 loginScreenMainButtonText;Login Screen;Fortfahren;Continue
 loginScreenSecondaryButtonText;Login Screen;Du hast noch kein Konto?;Don't have an account?
-homeScreenDeleteAllButtonText;Home Screen;Alle Bilder löschen;Delete all photos
+homeScreenSyncedPhotosButtonText;Home Screen;Synchronisierte Bilder anschauen;View synced photos
 homeScreenChoosePhotosButtonText;Home Screen;Photos auswählen;Choose photos
 homeScreenLogoutButtonText;Home Screen;Ausloggen;Logout
 homeScreenUploadingText;Home Screen;Uploading %completed$d/%total$d...;Uploading %completed$d/%total$d...
+syncedPhotosScreenDeleteAllButtonText;Home Screen;Alle Bilder löschen;Delete all photos
 errorPopupTitleText;Error popup;Ooops;Ooops
 errorPopupDescriptionText;Error popup;Etwas ist schief gelaufen;Something went wrong
+syncSinglePhotoPopupTitleText;Error popup;Sync-Einstellungen;Sync settings
+syncSinglePhotoPopupDescriptionText;Error popup;Möchtest du die Synchronisierung dieses Bilds beenden?;Do you want to stop synchronizing this photo?
+syncAllPhotosPopupTitleText;Error popup;Sync-Einstellungen;Sync settings
+syncAllPhotosPopupDescriptionText;Error popup;Möchtest du die Synchronisierung der Bilder beenden?;Do you want to stop synchronizing all photos?
