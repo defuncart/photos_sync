@@ -2,6 +2,30 @@
 
 A Flutter app to sync photos to/from a remote server.
 
+## About
+
+This app has two modes: uploader and downloader, and runs on Android, iOS and macOS.
+
+The *uploader* can choose photos from their device to sync
+
+<table>
+    <tr>
+        <td><img src="docs/images/01.png" /></td>
+        <td><img src="docs/images/02.png" /></td>
+    </tr>
+</table>
+
+while the *downloader* syncs these photos to `~/Downloads/PhotoSync`.
+
+<table>
+    <tr>
+        <td><img src="docs/images/03.png" /></td>
+        <td><img src="docs/images/04.png" /></td>
+    </tr>
+</table>
+
+Note: by default, mobile is considered the uploader, while desktop is the downloader.
+
 ## Getting Started
 
 If you would like to build the app yourself, then you simply need:
