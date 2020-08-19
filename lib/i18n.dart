@@ -59,6 +59,23 @@ class I18n {
     return text;
   }
 
+  static String get downloaderScreenSyncButtonText =>
+      _getText('downloaderScreenSyncButtonText');
+
+  static String downloaderScreenDownloadingText({
+    @required int completed,
+    @required int total,
+  }) {
+    String text = _getText('downloaderScreenDownloadingText');
+    if (completed != null) {
+      text = text.replaceAll("%completed\$d", completed.toString());
+    }
+    if (total != null) {
+      text = text.replaceAll("%total\$d", total.toString());
+    }
+    return text;
+  }
+
   static String get errorPopupTitleText => _getText('errorPopupTitleText');
 
   static String get errorPopupDescriptionText =>
@@ -84,6 +101,9 @@ class I18n {
     'homeScreenChoosePhotosButtonText': 'Photos auswählen',
     'homeScreenLogoutButtonText': 'Ausloggen',
     'homeScreenUploadingText': 'Uploading %completed\$d/%total\$d...',
+    'downloaderScreenSyncButtonText': 'Sync',
+    'downloaderScreenDownloadingText':
+        'Synchronisieren %completed\$d/%total\$d...',
     'errorPopupTitleText': 'Ooops',
     'errorPopupDescriptionText': 'Etwas ist schief gelaufen',
   };
@@ -106,6 +126,8 @@ class I18n {
     'homeScreenChoosePhotosButtonText': 'Choose photos',
     'homeScreenLogoutButtonText': 'Logout',
     'homeScreenUploadingText': 'Uploading %completed\$d/%total\$d...',
+    'downloaderScreenSyncButtonText': 'Sync',
+    'downloaderScreenDownloadingText': 'Syncing %completed\$d/%total\$d...',
     'errorPopupTitleText': 'Ooops',
     'errorPopupDescriptionText': 'Something went wrong',
   };

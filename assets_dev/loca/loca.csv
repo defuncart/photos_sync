@@ -15,5 +15,7 @@ homeScreenDeleteAllButtonText;Home Screen;Alle Bilder löschen;Delete all photos
 homeScreenChoosePhotosButtonText;Home Screen;Photos auswählen;Choose photos
 homeScreenLogoutButtonText;Home Screen;Ausloggen;Logout
 homeScreenUploadingText;Home Screen;Uploading %completed$d/%total$d...;Uploading %completed$d/%total$d...
+downloaderScreenSyncButtonText;Downloader Screen;Sync;Sync
+downloaderScreenDownloadingText;Downloader Screen;Synchronisieren %completed$d/%total$d...;Syncing %completed$d/%total$d...
 errorPopupTitleText;Error popup;Ooops;Ooops
 errorPopupDescriptionText;Error popup;Etwas ist schief gelaufen;Something went wrong
