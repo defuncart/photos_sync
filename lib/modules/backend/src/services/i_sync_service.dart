@@ -10,7 +10,7 @@ abstract class ISyncService {
   Future<bool> uploadFile(File file, {@required SyncedPhoto photo});
 
   /// Downloads a file
-  Future<File> downloadFile(SyncedPhoto photo);
+  Future<File> downloadFile(SyncedPhoto photo, {@required String filepath});
 
   /// Deletes a file
   Future<void> deleteFile(SyncedPhoto photo);

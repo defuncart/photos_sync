@@ -81,7 +81,7 @@ class FirebaseService implements IAuthService, ISyncService, IDatabaseService {
   }
 
   /// Downloads a file
-  Future<File> downloadFile(SyncedPhoto photo) async {
+  Future<File> downloadFile(SyncedPhoto photo, {@required String filepath}) async {
     final storageReference = FirebaseStorage.instance.ref().child(_filepathForPhoto(photo));
     try {
       final url = await storageReference.getDownloadURL();
@@ -89,7 +89,7 @@ class FirebaseService implements IAuthService, ISyncService, IDatabaseService {
         try {
           final response = await http.get(url);
           if (response != null) {
-            return File.fromRawPath(response.bodyBytes);
+            return File(filepath).writeAsBytes(response.bodyBytes);
           }
         } catch (e) {
           print(e);
