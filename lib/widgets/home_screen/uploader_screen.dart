@@ -33,15 +33,16 @@ class _UploaderScreenState extends State<UploaderScreen> {
             : CustomButton(
                 buttonText: I18n.homeScreenChoosePhotosButtonText,
                 onPressed: () async {
-                  final files = await FilePicker.getMultiFile(
+                  final result = await FilePicker.platform.pickFiles(
+                    allowMultiple: true,
                     type: FileType.image,
                   );
 
-                  if (files != null && files.isNotEmpty) {
+                  if (result != null && result.files != null && result.files.isNotEmpty) {
                     final photosOnServer =
                         await context.read<IDatabaseService>().getPhotos(user: UserPreferences.getUsername());
                     final photosToUpload = <_PhotoToUpload>[];
-                    for (final file in files) {
+                    for (final file in result.files) {
                       final photo = SyncedPhoto(
                         user: UserPreferences.getUsername(),
                         folder: dirname(file.path).split('/').last,
@@ -49,7 +50,7 @@ class _UploaderScreenState extends State<UploaderScreen> {
                         absoluteFilepath: file.path,
                       );
                       if (!photosOnServer.contains(photo)) {
-                        photosToUpload.add(_PhotoToUpload(file: file, photo: photo));
+                        photosToUpload.add(_PhotoToUpload(file: File(file.path), photo: photo));
                       } else {
                         // TODO notify user already on server
                       }
