@@ -3,7 +3,7 @@ import 'package:photos_sync/i18n.dart';
 
 class ErrorDialog extends StatelessWidget {
   const ErrorDialog({
-    Key key,
+    Key? key,
   }) : super(key: key);
 
   @override
@@ -12,9 +12,11 @@ class ErrorDialog extends StatelessWidget {
       title: Text(I18n.errorPopupTitleText),
       content: Text(I18n.errorPopupDescriptionText),
       actions: <Widget>[
-        FlatButton(
+        TextButton(
           child: Text(I18n.generalOk),
-          textColor: Theme.of(context).accentColor,
+          style: TextButton.styleFrom(
+            primary: Theme.of(context).accentColor,
+          ),
           onPressed: () => Navigator.of(context).pop(),
         )
       ],

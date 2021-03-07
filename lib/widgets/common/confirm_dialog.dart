@@ -6,12 +6,10 @@ class ConfirmDialog extends StatelessWidget {
   final String description;
 
   const ConfirmDialog({
-    @required this.title,
-    @required this.description,
-    Key key,
-  })  : assert(title != null),
-        assert(description != null),
-        super(key: key);
+    required this.title,
+    required this.description,
+    Key? key,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -19,14 +17,17 @@ class ConfirmDialog extends StatelessWidget {
       title: Text(title),
       content: Text(description),
       actions: <Widget>[
-        FlatButton(
+        TextButton(
           child: Text(I18n.generalNo),
-          textColor: Theme.of(context).textTheme.bodyText1.color,
+
+          // textColor: Theme.of(context).textTheme.bodyText1!.color,
           onPressed: () => Navigator.of(context).pop(false),
         ),
-        FlatButton(
+        TextButton(
           child: Text(I18n.generalYes),
-          textColor: Theme.of(context).accentColor,
+          style: TextButton.styleFrom(
+            primary: Theme.of(context).accentColor,
+          ),
           onPressed: () => Navigator.of(context).pop(true),
         )
       ],
@@ -34,10 +35,10 @@ class ConfirmDialog extends StatelessWidget {
   }
 }
 
-Future<bool> showConfirmDialog({
-  @required BuildContext context,
-  @required String title,
-  @required String description,
+Future<bool?> showConfirmDialog({
+  required BuildContext context,
+  required String title,
+  required String description,
 }) async =>
     await showDialog<bool>(
       context: context,

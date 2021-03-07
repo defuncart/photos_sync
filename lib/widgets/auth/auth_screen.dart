@@ -12,12 +12,12 @@ class AuthScreen extends StatefulWidget {
   final void Function() onSecondaryButtonPressed;
 
   const AuthScreen({
-    @required this.title,
-    @required this.mainButtonText,
-    @required this.onMainButtonPressed,
-    @required this.secondaryButtonText,
-    @required this.onSecondaryButtonPressed,
-    Key key,
+    required this.title,
+    required this.mainButtonText,
+    required this.onMainButtonPressed,
+    required this.secondaryButtonText,
+    required this.onSecondaryButtonPressed,
+    Key? key,
   }) : super(key: key);
 
   @override
@@ -89,7 +89,7 @@ class _AuthScreenState extends State<AuthScreen> {
                               : null,
                         ),
                         Container(height: 8),
-                        FlatButton(
+                        TextButton(
                           child: Text(widget.secondaryButtonText),
                           onPressed: widget.onSecondaryButtonPressed,
                         ),
@@ -114,52 +114,53 @@ class _AuthScreenState extends State<AuthScreen> {
 class _CustomTextField extends StatelessWidget {
   final Function(String) onChanged;
   final String hintText;
-  final String errorText;
+  final String? errorText;
   final TextInputType keyboardType;
   final bool shouldObscureText;
-  final Widget suffixIcon;
+  final Widget? suffixIcon;
 
   const _CustomTextField({
-    @required this.onChanged,
-    @required this.hintText,
+    required this.onChanged,
+    required this.hintText,
     this.errorText,
     this.keyboardType = TextInputType.text,
     this.shouldObscureText = false,
     this.suffixIcon,
-    Key key,
-  })  : assert(onChanged != null),
-        assert(hintText != null),
-        assert(shouldObscureText != null),
-        assert(keyboardType != null),
-        super(key: key);
+    Key? key,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return TextField(
       onChanged: onChanged,
       decoration: InputDecoration(
-          border: OutlineInputBorder(
-            borderSide: BorderSide(
-              color: Theme.of(context).disabledColor,
-            ),
-            borderRadius: const BorderRadius.all(
-              const Radius.circular(24.0),
-            ),
-          ),
-          focusedBorder: OutlineInputBorder(
-            borderSide: BorderSide(
-              color: Theme.of(context).accentColor,
-            ),
-            borderRadius: const BorderRadius.all(
-              const Radius.circular(24.0),
-            ),
-          ),
-          filled: false,
-          hintText: hintText,
-          hintStyle: TextStyle(
+        border: OutlineInputBorder(
+          borderSide: BorderSide(
             color: Theme.of(context).disabledColor,
           ),
-          suffixIcon: suffixIcon),
+          borderRadius: const BorderRadius.all(
+            const Radius.circular(24.0),
+          ),
+        ),
+        focusedBorder: OutlineInputBorder(
+          borderSide: BorderSide(
+            color: Theme.of(context).accentColor,
+          ),
+          borderRadius: const BorderRadius.all(
+            const Radius.circular(24.0),
+          ),
+        ),
+        filled: false,
+        hintText: hintText,
+        hintStyle: TextStyle(
+          color: Theme.of(context).disabledColor,
+        ),
+        errorText: errorText,
+        errorStyle: TextStyle(
+          color: Theme.of(context).accentColor,
+        ),
+        suffixIcon: suffixIcon,
+      ),
       cursorColor: Theme.of(context).accentColor,
       obscureText: shouldObscureText,
       keyboardType: keyboardType,

@@ -1,5 +1,3 @@
-import 'package:meta/meta.dart';
-
 import '../models/synced_photo.dart';
 
 /// A service which manipulates a database of photo data
@@ -11,5 +9,5 @@ abstract class IDatabaseService {
   Future<void> removePhoto(SyncedPhoto photo);
 
   /// Gets all synced photo data from the database
-  Future<List<SyncedPhoto>> getPhotos({@required String user});
+  Future<List<SyncedPhoto>> getPhotos({required String user});
 }

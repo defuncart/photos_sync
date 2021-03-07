@@ -4,7 +4,7 @@ import 'package:photos_sync/i18n.dart';
 import 'package:photos_sync/widgets/common/custom_button.dart';
 
 class WelcomeScreen extends StatelessWidget {
-  const WelcomeScreen({Key key}) : super(key: key);
+  const WelcomeScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

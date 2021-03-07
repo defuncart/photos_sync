@@ -3,7 +3,6 @@ import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
-import 'package:meta/meta.dart';
 import 'package:path/path.dart' as path;
 import 'package:photos_sync/modules/backend/backend.dart';
 
@@ -12,15 +11,13 @@ class FirebaseService implements IAuthService, ISyncService, IDatabaseService {
   /// Region: IAuthService
 
   /// Attempts to create a new user with a given email and password combination
-  Future<bool> createUserAccount({@required email, @required password}) async {
+  Future<bool> createUserAccount({required email, required password}) async {
     try {
-      final result = await FirebaseAuth.instance.createUserWithEmailAndPassword(
+      await FirebaseAuth.instance.createUserWithEmailAndPassword(
         email: email,
         password: password,
       );
-      if (result != null) {
-        return true;
-      }
+      return true;
     } catch (e) {
       print(e);
     }
@@ -29,15 +26,13 @@ class FirebaseService implements IAuthService, ISyncService, IDatabaseService {
   }
 
   /// Attempts to login a user with a given email and password combination
-  Future<bool> login({@required email, @required password}) async {
+  Future<bool> login({required email, required password}) async {
     try {
-      final result = await FirebaseAuth.instance.signInWithEmailAndPassword(
+      await FirebaseAuth.instance.signInWithEmailAndPassword(
         email: email,
         password: password,
       );
-      if (result != null) {
-        return true;
-      }
+      return true;
     } catch (e) {
       print(e);
     }
@@ -57,28 +52,26 @@ class FirebaseService implements IAuthService, ISyncService, IDatabaseService {
   /// Region: ISyncService
 
   /// Uploads a file
-  Future<bool> uploadFile(File file, {@required SyncedPhoto photo}) async {
-    if (file != null && photo != null) {
-      final storageReferencePath = _filepathForPhoto(photo);
-      final contentType = path.extension(file.path).toLowerCase().replaceAll('.', '');
-      final storageReference = FirebaseStorage.instance.ref().child(storageReferencePath);
-      final uploadTask = storageReference.putFile(
-        file,
-        SettableMetadata(
-          contentType: contentType,
-        ),
-      );
-      await uploadTask.then((_) async {
-        await addPhoto(photo);
-        return true;
-      });
-    }
+  Future<bool> uploadFile(File file, {required SyncedPhoto photo}) async {
+    final storageReferencePath = _filepathForPhoto(photo);
+    final contentType = path.extension(file.path).toLowerCase().replaceAll('.', '');
+    final storageReference = FirebaseStorage.instance.ref().child(storageReferencePath);
+    final uploadTask = storageReference.putFile(
+      file,
+      SettableMetadata(
+        contentType: contentType,
+      ),
+    );
+    await uploadTask.then((_) async {
+      await addPhoto(photo);
+      return true;
+    });
 
     return false;
   }
 
   /// Downloads a file
-  Future<File> downloadFile(SyncedPhoto photo, {@required String filepath}) async {
+  Future<File?> downloadFile(SyncedPhoto photo, {required String filepath}) async {
     final storageReference = FirebaseStorage.instance.ref().child(_filepathForPhoto(photo));
     final data = await storageReference.getData();
     if (data != null) {
@@ -123,7 +116,7 @@ class FirebaseService implements IAuthService, ISyncService, IDatabaseService {
   }
 
   /// Gets all synced photo data from the database
-  Future<List<SyncedPhoto>> getPhotos({@required String user}) async {
+  Future<List<SyncedPhoto>> getPhotos({required String user}) async {
     final snapshot = await FirebaseFirestore.instance.collection(user).get();
     return snapshot.docs.map((doc) => SyncedPhoto.fromJson(doc.data())).toList();
   }

@@ -12,7 +12,7 @@ import 'package:provider/provider.dart';
 
 class UploaderScreen extends StatefulWidget {
   const UploaderScreen({
-    Key key,
+    Key? key,
   }) : super(key: key);
 
   @override
@@ -21,8 +21,8 @@ class UploaderScreen extends StatefulWidget {
 
 class _UploaderScreenState extends State<UploaderScreen> {
   bool _isUploading = false;
-  int _photosUploaded;
-  int _photosToUpload;
+  int _photosUploaded = 0;
+  int _photosToUpload = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -38,19 +38,19 @@ class _UploaderScreenState extends State<UploaderScreen> {
                     type: FileType.image,
                   );
 
-                  if (result != null && result.files != null && result.files.isNotEmpty) {
+                  if (result != null && result.files.isNotEmpty) {
                     final photosOnServer =
-                        await context.read<IDatabaseService>().getPhotos(user: UserPreferences.getUsername());
+                        await context.read<IDatabaseService>().getPhotos(user: UserPreferences.getUsername()!);
                     final photosToUpload = <_PhotoToUpload>[];
                     for (final file in result.files) {
                       final photo = SyncedPhoto(
                         user: UserPreferences.getUsername(),
-                        folder: dirname(file.path).split('/').last,
-                        filename: basename(file.path),
+                        folder: dirname(file.path!).split('/').last,
+                        filename: basename(file.path!),
                         absoluteFilepath: file.path,
                       );
                       if (!photosOnServer.contains(photo)) {
-                        photosToUpload.add(_PhotoToUpload(file: File(file.path), photo: photo));
+                        photosToUpload.add(_PhotoToUpload(file: File(file.path!), photo: photo));
                       } else {
                         // TODO notify user already on server
                       }
@@ -96,8 +96,7 @@ class _PhotoToUpload {
   final SyncedPhoto photo;
 
   const _PhotoToUpload({
-    @required this.file,
-    @required this.photo,
-  })  : assert(file != null),
-        assert(photo != null);
+    required this.file,
+    required this.photo,
+  });
 }
