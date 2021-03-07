@@ -62,12 +62,13 @@ class FirebaseService implements IAuthService, ISyncService, IDatabaseService {
         contentType: contentType,
       ),
     );
-    await uploadTask.then((_) async {
+    return await uploadTask.then((_) async {
       await addPhoto(photo);
       return true;
+    }).onError((error, stackTrace) {
+      print(error);
+      return false;
     });
-
-    return false;
   }
 
   /// Downloads a file

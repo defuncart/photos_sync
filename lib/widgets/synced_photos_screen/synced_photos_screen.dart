@@ -67,15 +67,15 @@ class _SyncedPhotosScreenState extends State<SyncedPhotosScreen> {
               );
             default:
               if (snapshot.connectionState == ConnectionState.done && snapshot.hasData) {
-                snapshot.data!.sort((a, b) => a.absoluteFilepath!.compareTo(b.absoluteFilepath!));
+                snapshot.data!.sort((a, b) => a.absoluteFilepath.compareTo(b.absoluteFilepath));
                 return ListView.builder(
                   itemCount: snapshot.data!.length,
                   itemBuilder: (_, index) => Dismissible(
-                    key: Key(snapshot.data![index].absoluteFilepath!),
+                    key: Key(snapshot.data![index].absoluteFilepath),
                     direction: DismissDirection.endToStart,
                     child: ListTile(
-                      title: Text(snapshot.data![index].filename!),
-                      subtitle: Text(snapshot.data![index].absoluteFilepath!),
+                      title: Text(snapshot.data![index].filename),
+                      subtitle: Text(snapshot.data![index].absoluteFilepath),
                     ),
                     background: Container(
                       alignment: AlignmentDirectional.centerEnd,
