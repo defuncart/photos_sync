@@ -30,11 +30,11 @@ class _SyncedPhotosScreenState extends State<SyncedPhotosScreen> {
           PopupMenuButton<int>(
             icon: Icon(Icons.more_vert),
             onSelected: (_) async {
-              final shouldDeleteAll = await (showConfirmDialog(
+              final shouldDeleteAll = await showConfirmDialog(
                 context: context,
                 title: I18n.syncAllPhotosPopupTitleText,
                 description: I18n.syncAllPhotosPopupDescriptionText,
-              ));
+              );
               if (shouldDeleteAll != null && shouldDeleteAll) {
                 final photos = await context.read<IDatabaseService>().getPhotos(user: UserPreferences.getUsername()!);
                 for (final photo in photos) {
@@ -42,8 +42,9 @@ class _SyncedPhotosScreenState extends State<SyncedPhotosScreen> {
                 }
 
                 setState(() {
-                  _syncedPhotosFuture =
-                      context.read<IDatabaseService>().getPhotos(user: UserPreferences.getUsername()!);
+                  _syncedPhotosFuture = context.read<IDatabaseService>().getPhotos(
+                        user: UserPreferences.getUsername()!,
+                      );
                 });
               }
             },

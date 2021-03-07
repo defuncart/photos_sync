@@ -44,10 +44,10 @@ class _UploaderScreenState extends State<UploaderScreen> {
                     final photosToUpload = <_PhotoToUpload>[];
                     for (final file in result.files) {
                       final photo = SyncedPhoto(
-                        user: UserPreferences.getUsername(),
+                        user: UserPreferences.getUsername()!,
                         folder: dirname(file.path!).split('/').last,
                         filename: basename(file.path!),
-                        absoluteFilepath: file.path,
+                        absoluteFilepath: file.path!,
                       );
                       if (!photosOnServer.contains(photo)) {
                         photosToUpload.add(_PhotoToUpload(file: File(file.path!), photo: photo));

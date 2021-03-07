@@ -42,32 +42,36 @@ class _DownloaderScreenState extends State<DownloaderScreen> {
                   });
 
                   final downloadsDirectory = await getDownloadsDirectory();
-                  final syncDirectory = '${downloadsDirectory!.path}/PhotoSync';
-                  if (!Directory(syncDirectory).existsSync()) {
-                    Directory(syncDirectory).createSync(recursive: true);
-                  }
-
-                  for (final syncedPhoto in syncedPhotos) {
-                    final photoDirectory = '$syncDirectory/${syncedPhoto.folder}';
-                    if (!Directory(photoDirectory).existsSync()) {
-                      Directory(photoDirectory).createSync(recursive: true);
+                  if (downloadsDirectory != null) {
+                    final syncDirectory = '${downloadsDirectory.path}/PhotoSync';
+                    if (!Directory(syncDirectory).existsSync()) {
+                      Directory(syncDirectory).createSync(recursive: true);
                     }
 
-                    final filepath = '$photoDirectory/${syncedPhoto.filename}';
-                    if (!File(filepath).existsSync()) {
-                      final photoAsFile = await context.read<ISyncService>().downloadFile(
-                            syncedPhoto,
-                            filepath: filepath,
-                          );
-                      if (photoAsFile == null) {
-                        showErrorDialog(context);
-                        break;
+                    for (final syncedPhoto in syncedPhotos) {
+                      final photoDirectory = '$syncDirectory/${syncedPhoto.folder}';
+                      if (!Directory(photoDirectory).existsSync()) {
+                        Directory(photoDirectory).createSync(recursive: true);
                       }
-                    }
 
-                    setState(() {
-                      _photosAlreadySynced++;
-                    });
+                      final filepath = '$photoDirectory/${syncedPhoto.filename}';
+                      if (!File(filepath).existsSync()) {
+                        final photoAsFile = await context.read<ISyncService>().downloadFile(
+                              syncedPhoto,
+                              filepath: filepath,
+                            );
+                        if (photoAsFile == null) {
+                          showErrorDialog(context);
+                          break;
+                        }
+                      }
+
+                      setState(() {
+                        _photosAlreadySynced++;
+                      });
+                    }
+                  } else {
+                    print('No access to downloads directory.');
                   }
 
                   setState(() {
