@@ -38,6 +38,10 @@ If you would like to build the app yourself, then you simply need:
 
 Also you need to create a Firebase project and [add it](https://firebase.google.com/docs/flutter/setup) to this Flutter project.
 
+## Notes
+
+Due to [MissingPluginException(No implementation found for method getAll on channel plugins.flutter.io/shared_preferences)](https://github.com/flutter/flutter/issues/66833) issue, the [following solution](https://github.com/flutter/flutter/issues/66833#issuecomment-786646405) is currently used.
+
 ## Contributing
 
 The project isn't actively looking for contributors, however feel free to contact James here on GitHub or [Twitter](https://twitter.com/defuncart).
