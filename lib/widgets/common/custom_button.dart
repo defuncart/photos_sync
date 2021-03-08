@@ -2,17 +2,15 @@ import 'package:flutter/material.dart';
 
 class CustomButton extends StatelessWidget {
   final String buttonText;
-  final void Function() onPressed;
+  final void Function()? onPressed;
   final bool isFilled;
 
   const CustomButton({
-    @required this.buttonText,
-    @required this.onPressed,
+    required this.buttonText,
+    required this.onPressed,
     this.isFilled = true,
-    Key key,
-  })  : assert(buttonText != null),
-        assert(isFilled != null),
-        super(key: key);
+    Key? key,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

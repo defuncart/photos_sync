@@ -4,10 +4,9 @@ class ResignKeyboardOnBackgroundTap extends StatelessWidget {
   final Widget child;
 
   const ResignKeyboardOnBackgroundTap({
-    @required this.child,
-    Key key,
-  })  : assert(child != null),
-        super(key: key);
+    required this.child,
+    Key? key,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

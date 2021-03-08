@@ -15,92 +15,68 @@ class I18n {
 
   static String get generalPassword => _getText('generalPassword');
 
-  static String get welcomeScreenDescriptionText =>
-      _getText('welcomeScreenDescriptionText');
+  static String get welcomeScreenDescriptionText => _getText('welcomeScreenDescriptionText');
 
-  static String get welcomeScreenSignupButtonText =>
-      _getText('welcomeScreenSignupButtonText');
+  static String get welcomeScreenSignupButtonText => _getText('welcomeScreenSignupButtonText');
 
-  static String get welcomeScreenLoginButtonText =>
-      _getText('welcomeScreenLoginButtonText');
+  static String get welcomeScreenLoginButtonText => _getText('welcomeScreenLoginButtonText');
 
   static String get singupScreenTitle => _getText('singupScreenTitle');
 
-  static String get singupScreenMainButtonText =>
-      _getText('singupScreenMainButtonText');
+  static String get singupScreenMainButtonText => _getText('singupScreenMainButtonText');
 
-  static String get singupScreenSecondaryButtonText =>
-      _getText('singupScreenSecondaryButtonText');
+  static String get singupScreenSecondaryButtonText => _getText('singupScreenSecondaryButtonText');
 
   static String get loginScreenTitle => _getText('loginScreenTitle');
 
-  static String get loginScreenMainButtonText =>
-      _getText('loginScreenMainButtonText');
+  static String get loginScreenMainButtonText => _getText('loginScreenMainButtonText');
 
-  static String get loginScreenSecondaryButtonText =>
-      _getText('loginScreenSecondaryButtonText');
+  static String get loginScreenSecondaryButtonText => _getText('loginScreenSecondaryButtonText');
 
-  static String get homeScreenSyncedPhotosButtonText =>
-      _getText('homeScreenSyncedPhotosButtonText');
+  static String get homeScreenSyncedPhotosButtonText => _getText('homeScreenSyncedPhotosButtonText');
 
-  static String get homeScreenChoosePhotosButtonText =>
-      _getText('homeScreenChoosePhotosButtonText');
+  static String get homeScreenChoosePhotosButtonText => _getText('homeScreenChoosePhotosButtonText');
 
-  static String get homeScreenLogoutButtonText =>
-      _getText('homeScreenLogoutButtonText');
+  static String get homeScreenLogoutButtonText => _getText('homeScreenLogoutButtonText');
 
   static String homeScreenUploadingText({
-    @required int completed,
-    @required int total,
+    required int completed,
+    required int total,
   }) {
     String text = _getText('homeScreenUploadingText');
-    if (completed != null) {
-      text = text.replaceAll("%completed\$d", completed.toString());
-    }
-    if (total != null) {
-      text = text.replaceAll("%total\$d", total.toString());
-    }
+    text = text.replaceAll("%completed\$d", completed.toString());
+    text = text.replaceAll("%total\$d", total.toString());
+
     return text;
   }
 
-  static String get downloaderScreenSyncButtonText =>
-      _getText('downloaderScreenSyncButtonText');
+  static String get downloaderScreenSyncButtonText => _getText('downloaderScreenSyncButtonText');
 
   static String downloaderScreenDownloadingText({
-    @required int completed,
-    @required int total,
+    required int completed,
+    required int total,
   }) {
     String text = _getText('downloaderScreenDownloadingText');
-    if (completed != null) {
-      text = text.replaceAll("%completed\$d", completed.toString());
-    }
-    if (total != null) {
-      text = text.replaceAll("%total\$d", total.toString());
-    }
+    text = text.replaceAll("%completed\$d", completed.toString());
+    text = text.replaceAll("%total\$d", total.toString());
     return text;
   }
 
-  static String get syncedPhotosScreenDeleteAllButtonText =>
-      _getText('syncedPhotosScreenDeleteAllButtonText');
+  static String get syncedPhotosScreenDeleteAllButtonText => _getText('syncedPhotosScreenDeleteAllButtonText');
 
   static String get errorPopupTitleText => _getText('errorPopupTitleText');
 
-  static String get errorPopupDescriptionText =>
-      _getText('errorPopupDescriptionText');
+  static String get errorPopupDescriptionText => _getText('errorPopupDescriptionText');
 
-  static String get syncSinglePhotoPopupTitleText =>
-      _getText('syncSinglePhotoPopupTitleText');
+  static String get syncSinglePhotoPopupTitleText => _getText('syncSinglePhotoPopupTitleText');
 
-  static String get syncSinglePhotoPopupDescriptionText =>
-      _getText('syncSinglePhotoPopupDescriptionText');
+  static String get syncSinglePhotoPopupDescriptionText => _getText('syncSinglePhotoPopupDescriptionText');
 
-  static String get syncAllPhotosPopupTitleText =>
-      _getText('syncAllPhotosPopupTitleText');
+  static String get syncAllPhotosPopupTitleText => _getText('syncAllPhotosPopupTitleText');
 
-  static String get syncAllPhotosPopupDescriptionText =>
-      _getText('syncAllPhotosPopupDescriptionText');
+  static String get syncAllPhotosPopupDescriptionText => _getText('syncAllPhotosPopupDescriptionText');
 
-  static Map<String, String> _localizedValues;
+  static Map<String, String>? _localizedValues;
 
   static Map<String, String> _deValues = {
     'generalOk': 'Ok',
@@ -108,8 +84,7 @@ class I18n {
     'generalNo': 'Nein',
     'generalEmail': 'Email',
     'generalPassword': 'Passwort',
-    'welcomeScreenDescriptionText':
-        'Synchronisier deine Bilder mit einem Remote-Server.',
+    'welcomeScreenDescriptionText': 'Synchronisier deine Bilder mit einem Remote-Server.',
     'welcomeScreenSignupButtonText': 'Anmelden',
     'welcomeScreenLoginButtonText': 'Einloggen',
     'singupScreenTitle': 'Anmelden',
@@ -123,17 +98,14 @@ class I18n {
     'homeScreenLogoutButtonText': 'Ausloggen',
     'homeScreenUploadingText': 'Uploading %completed\$d/%total\$d...',
     'downloaderScreenSyncButtonText': 'Sync',
-    'downloaderScreenDownloadingText':
-        'Synchronisieren %completed\$d/%total\$d...',
+    'downloaderScreenDownloadingText': 'Synchronisieren %completed\$d/%total\$d...',
     'syncedPhotosScreenDeleteAllButtonText': 'Alle Bilder löschen',
     'errorPopupTitleText': 'Ooops',
     'errorPopupDescriptionText': 'Etwas ist schief gelaufen',
     'syncSinglePhotoPopupTitleText': 'Sync-Einstellungen',
-    'syncSinglePhotoPopupDescriptionText':
-        'Möchtest du die Synchronisierung dieses Bilds beenden?',
+    'syncSinglePhotoPopupDescriptionText': 'Möchtest du die Synchronisierung dieses Bilds beenden?',
     'syncAllPhotosPopupTitleText': 'Sync-Einstellungen',
-    'syncAllPhotosPopupDescriptionText':
-        'Möchtest du die Synchronisierung der Bilder beenden?',
+    'syncAllPhotosPopupDescriptionText': 'Möchtest du die Synchronisierung der Bilder beenden?',
   };
 
   static Map<String, String> _enValues = {
@@ -142,8 +114,7 @@ class I18n {
     'generalNo': 'No',
     'generalEmail': 'Email',
     'generalPassword': 'Password',
-    'welcomeScreenDescriptionText':
-        'Easily sync your photos with a remote server.',
+    'welcomeScreenDescriptionText': 'Easily sync your photos with a remote server.',
     'welcomeScreenSignupButtonText': 'Signup',
     'welcomeScreenLoginButtonText': 'Login',
     'singupScreenTitle': 'Signup',
@@ -162,11 +133,9 @@ class I18n {
     'errorPopupTitleText': 'Ooops',
     'errorPopupDescriptionText': 'Something went wrong',
     'syncSinglePhotoPopupTitleText': 'Sync settings',
-    'syncSinglePhotoPopupDescriptionText':
-        'Do you want to stop synchronizing this photo?',
+    'syncSinglePhotoPopupDescriptionText': 'Do you want to stop synchronizing this photo?',
     'syncAllPhotosPopupTitleText': 'Sync settings',
-    'syncAllPhotosPopupDescriptionText':
-        'Do you want to stop synchronizing all photos?',
+    'syncAllPhotosPopupDescriptionText': 'Do you want to stop synchronizing all photos?',
   };
 
   static Map<String, Map<String, String>> _allValues = {
@@ -179,10 +148,10 @@ class I18n {
     _localizedValues = null;
   }
 
-  static Locale _locale;
+  static late Locale _locale;
 
   static String _getText(String key) {
-    return _localizedValues[key] ?? '** $key not found';
+    return _localizedValues![key] ?? '** $key not found';
   }
 
   static Locale get currentLocale => _locale;

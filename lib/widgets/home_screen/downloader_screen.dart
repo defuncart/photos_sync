@@ -10,7 +10,7 @@ import 'package:photos_sync/widgets/common/error_dialog.dart';
 import 'package:provider/provider.dart';
 
 class DownloaderScreen extends StatefulWidget {
-  const DownloaderScreen({Key key}) : super(key: key);
+  const DownloaderScreen({Key? key}) : super(key: key);
 
   @override
   _DownloaderScreenState createState() => _DownloaderScreenState();
@@ -18,19 +18,22 @@ class DownloaderScreen extends StatefulWidget {
 
 class _DownloaderScreenState extends State<DownloaderScreen> {
   bool _isSyncing = false;
-  int _totalPhotosToSync;
-  int _photosAlreadySynced;
+  var _totalPhotosToSync = 0;
+  var _photosAlreadySynced = 0;
 
   @override
   Widget build(BuildContext context) {
     return Center(
       child: _isSyncing
-          ? Text(I18n.downloaderScreenDownloadingText(completed: _photosAlreadySynced, total: _totalPhotosToSync))
+          ? Text(I18n.downloaderScreenDownloadingText(
+              completed: _photosAlreadySynced,
+              total: _totalPhotosToSync,
+            ))
           : CustomButton(
               buttonText: I18n.downloaderScreenSyncButtonText,
               onPressed: () async {
                 final syncedPhotos =
-                    await context.read<IDatabaseService>().getPhotos(user: UserPreferences.getUsername());
+                    await context.read<IDatabaseService>().getPhotos(user: UserPreferences.getUsername()!);
                 if (syncedPhotos.isNotEmpty) {
                   setState(() {
                     _isSyncing = true;
@@ -39,32 +42,36 @@ class _DownloaderScreenState extends State<DownloaderScreen> {
                   });
 
                   final downloadsDirectory = await getDownloadsDirectory();
-                  final syncDirectory = '${downloadsDirectory.path}/PhotoSync';
-                  if (!Directory(syncDirectory).existsSync()) {
-                    Directory(syncDirectory).createSync(recursive: true);
-                  }
-
-                  for (final syncedPhoto in syncedPhotos) {
-                    final photoDirectory = '$syncDirectory/${syncedPhoto.folder}';
-                    if (!Directory(photoDirectory).existsSync()) {
-                      Directory(photoDirectory).createSync(recursive: true);
+                  if (downloadsDirectory != null) {
+                    final syncDirectory = '${downloadsDirectory.path}/PhotoSync';
+                    if (!Directory(syncDirectory).existsSync()) {
+                      Directory(syncDirectory).createSync(recursive: true);
                     }
 
-                    final filepath = '$photoDirectory/${syncedPhoto.filename}';
-                    if (!File(filepath).existsSync()) {
-                      final photoAsFile = await context.read<ISyncService>().downloadFile(
-                            syncedPhoto,
-                            filepath: filepath,
-                          );
-                      if (photoAsFile == null) {
-                        showErrorDialog(context);
-                        break;
+                    for (final syncedPhoto in syncedPhotos) {
+                      final photoDirectory = '$syncDirectory/${syncedPhoto.folder}';
+                      if (!Directory(photoDirectory).existsSync()) {
+                        Directory(photoDirectory).createSync(recursive: true);
                       }
-                    }
 
-                    setState(() {
-                      _photosAlreadySynced++;
-                    });
+                      final filepath = '$photoDirectory/${syncedPhoto.filename}';
+                      if (!File(filepath).existsSync()) {
+                        final photoAsFile = await context.read<ISyncService>().downloadFile(
+                              syncedPhoto,
+                              filepath: filepath,
+                            );
+                        if (photoAsFile == null) {
+                          showErrorDialog(context);
+                          break;
+                        }
+                      }
+
+                      setState(() {
+                        _photosAlreadySynced++;
+                      });
+                    }
+                  } else {
+                    print('No access to downloads directory.');
                   }
 
                   setState(() {

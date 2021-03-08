@@ -6,20 +6,20 @@ import 'package:photos_sync/widgets/common/confirm_dialog.dart';
 import 'package:provider/provider.dart';
 
 class SyncedPhotosScreen extends StatefulWidget {
-  const SyncedPhotosScreen({Key key}) : super(key: key);
+  const SyncedPhotosScreen({Key? key}) : super(key: key);
 
   @override
   _SyncedPhotosScreenState createState() => _SyncedPhotosScreenState();
 }
 
 class _SyncedPhotosScreenState extends State<SyncedPhotosScreen> {
-  Future<List<SyncedPhoto>> _syncedPhotosFuture;
+  late Future<List<SyncedPhoto>> _syncedPhotosFuture;
 
   @override
   void initState() {
     super.initState();
 
-    _syncedPhotosFuture = context.read<IDatabaseService>().getPhotos(user: UserPreferences.getUsername());
+    _syncedPhotosFuture = context.read<IDatabaseService>().getPhotos(user: UserPreferences.getUsername()!);
   }
 
   @override
@@ -36,13 +36,15 @@ class _SyncedPhotosScreenState extends State<SyncedPhotosScreen> {
                 description: I18n.syncAllPhotosPopupDescriptionText,
               );
               if (shouldDeleteAll) {
-                final photos = await context.read<IDatabaseService>().getPhotos(user: UserPreferences.getUsername());
+                final photos = await context.read<IDatabaseService>().getPhotos(user: UserPreferences.getUsername()!);
                 for (final photo in photos) {
                   await context.read<ISyncService>().deleteFile(photo);
                 }
 
                 setState(() {
-                  _syncedPhotosFuture = context.read<IDatabaseService>().getPhotos(user: UserPreferences.getUsername());
+                  _syncedPhotosFuture = context.read<IDatabaseService>().getPhotos(
+                        user: UserPreferences.getUsername()!,
+                      );
                 });
               }
             },
@@ -66,15 +68,15 @@ class _SyncedPhotosScreenState extends State<SyncedPhotosScreen> {
               );
             default:
               if (snapshot.connectionState == ConnectionState.done && snapshot.hasData) {
-                snapshot.data.sort((a, b) => a.absoluteFilepath.compareTo(b.absoluteFilepath));
+                snapshot.data!.sort((a, b) => a.absoluteFilepath.compareTo(b.absoluteFilepath));
                 return ListView.builder(
-                  itemCount: snapshot.data.length,
+                  itemCount: snapshot.data!.length,
                   itemBuilder: (_, index) => Dismissible(
-                    key: Key(snapshot.data[index].absoluteFilepath),
+                    key: Key(snapshot.data![index].absoluteFilepath),
                     direction: DismissDirection.endToStart,
                     child: ListTile(
-                      title: Text(snapshot.data[index].filename),
-                      subtitle: Text(snapshot.data[index].absoluteFilepath),
+                      title: Text(snapshot.data![index].filename),
+                      subtitle: Text(snapshot.data![index].absoluteFilepath),
                     ),
                     background: Container(
                       alignment: AlignmentDirectional.centerEnd,
@@ -87,7 +89,7 @@ class _SyncedPhotosScreenState extends State<SyncedPhotosScreen> {
                         ),
                       ),
                     ),
-                    onDismissed: (_) => context.read<ISyncService>().deleteFile(snapshot.data[index]),
+                    onDismissed: (_) => context.read<ISyncService>().deleteFile(snapshot.data![index]),
                     confirmDismiss: (_) async => await showConfirmDialog(
                       context: context,
                       title: I18n.syncSinglePhotoPopupTitleText,

@@ -10,7 +10,7 @@ import 'package:photos_sync/widgets/home_screen/uploader_screen.dart';
 import 'package:provider/provider.dart';
 
 class HomeScreen extends StatelessWidget {
-  const HomeScreen({Key key}) : super(key: key);
+  const HomeScreen({Key? key}) : super(key: key);
 
   static final _mapMenuItemCallback = <int, void Function(BuildContext)>{
     0: (BuildContext context) async {
@@ -28,7 +28,7 @@ class HomeScreen extends StatelessWidget {
         actions: [
           PopupMenuButton<int>(
             icon: Icon(Icons.more_vert),
-            onSelected: (index) async => _mapMenuItemCallback[index](context),
+            onSelected: (index) async => _mapMenuItemCallback[index]!(context),
             itemBuilder: (_) => [
               PopupMenuItem(
                 value: 1,
@@ -49,7 +49,7 @@ class HomeScreen extends StatelessWidget {
 }
 
 class _HomePageContent extends StatefulWidget {
-  const _HomePageContent({Key key}) : super(key: key);
+  const _HomePageContent({Key? key}) : super(key: key);
 
   @override
   __HomePageContentState createState() => __HomePageContentState();
