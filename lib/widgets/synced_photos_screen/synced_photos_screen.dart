@@ -13,7 +13,7 @@ class SyncedPhotosScreen extends StatefulWidget {
 }
 
 class _SyncedPhotosScreenState extends State<SyncedPhotosScreen> {
-  Future<List<SyncedPhoto>>? _syncedPhotosFuture;
+  late Future<List<SyncedPhoto>> _syncedPhotosFuture;
 
   @override
   void initState() {
@@ -35,7 +35,7 @@ class _SyncedPhotosScreenState extends State<SyncedPhotosScreen> {
                 title: I18n.syncAllPhotosPopupTitleText,
                 description: I18n.syncAllPhotosPopupDescriptionText,
               );
-              if (shouldDeleteAll != null && shouldDeleteAll) {
+              if (shouldDeleteAll) {
                 final photos = await context.read<IDatabaseService>().getPhotos(user: UserPreferences.getUsername()!);
                 for (final photo in photos) {
                   await context.read<ISyncService>().deleteFile(photo);

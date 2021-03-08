@@ -30,10 +30,8 @@ class UserPreferences {
   }
 
   /// Sets the client type for this device
-  static Future<void> setClientType(ClientType clientType) async {
-    final clientTypeAsInt = ClientType.values.indexOf(clientType);
-    await _prefs.setInt(_UserPreferencesKeys.clientType, clientTypeAsInt);
-  }
+  static Future<void> setClientType(ClientType clientType) async =>
+      await _prefs.setInt(_UserPreferencesKeys.clientType, clientType.index);
 
   /// Clears all prefs
   static Future<void> clear() async => await _prefs.clear();

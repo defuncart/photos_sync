@@ -20,10 +20,10 @@ class SyncedPhoto {
         assert(absoluteFilepath != _emptyString);
 
   factory SyncedPhoto.fromJson(Map<String, dynamic>? json) => SyncedPhoto(
-        user: json.tryParse('user') ?? '',
-        folder: json.tryParse('folder') ?? '',
-        filename: json.tryParse('filename') ?? '',
-        absoluteFilepath: json.tryParse('absoluteFilepath') ?? '',
+        user: json.tryParse('user') ?? _emptyString,
+        folder: json.tryParse('folder') ?? _emptyString,
+        filename: json.tryParse('filename') ?? _emptyString,
+        absoluteFilepath: json.tryParse('absoluteFilepath') ?? _emptyString,
       );
 
   Map<String, dynamic> toJson() => {

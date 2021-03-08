@@ -36,7 +36,7 @@ class ConfirmDialog extends StatelessWidget {
   }
 }
 
-Future<bool?> showConfirmDialog({
+Future<bool> showConfirmDialog({
   required BuildContext context,
   required String title,
   required String description,
@@ -47,4 +47,5 @@ Future<bool?> showConfirmDialog({
         title: title,
         description: description,
       ),
-    );
+    ) ??
+    false;
