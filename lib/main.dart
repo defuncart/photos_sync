@@ -10,5 +10,5 @@ void main() async {
   // await UserPreferences.clear();
   await Firebase.initializeApp();
 
-  runApp(MyApp());
+  runApp(const MyApp());
 }

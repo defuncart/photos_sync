@@ -1,3 +1,4 @@
+import 'dart:developer' show log;
 import 'dart:io';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -8,9 +9,9 @@ import 'package:photos_sync/modules/backend/backend.dart';
 
 /// A concrete implementation of IAuthService, ISyncService and IDatabaseService using Firebase
 class FirebaseService implements IAuthService, ISyncService, IDatabaseService {
-  /// Region: IAuthService
+  // Region: IAuthService
 
-  /// Attempts to create a new user with a given email and password combination
+  @override
   Future<bool> createUserAccount({required email, required password}) async {
     try {
       await FirebaseAuth.instance.createUserWithEmailAndPassword(
@@ -19,13 +20,13 @@ class FirebaseService implements IAuthService, ISyncService, IDatabaseService {
       );
       return true;
     } catch (e) {
-      print(e);
+      log(e.toString());
     }
 
     return false;
   }
 
-  /// Attempts to login a user with a given email and password combination
+  @override
   Future<bool> login({required email, required password}) async {
     try {
       await FirebaseAuth.instance.signInWithEmailAndPassword(
@@ -34,24 +35,24 @@ class FirebaseService implements IAuthService, ISyncService, IDatabaseService {
       );
       return true;
     } catch (e) {
-      print(e);
+      log(e.toString());
     }
 
     return false;
   }
 
-  /// Attempts to logout a user
+  @override
   Future<void> logout() async {
     try {
       await FirebaseAuth.instance.signOut();
     } catch (e) {
-      print(e);
+      log(e.toString());
     }
   }
 
-  /// Region: ISyncService
+  // Region: ISyncService
 
-  /// Uploads a file
+  @override
   Future<bool> uploadFile(File file, {required SyncedPhoto photo}) async {
     final storageReferencePath = _filepathForPhoto(photo);
     final contentType = path.extension(file.path).toLowerCase().replaceAll('.', '');
@@ -66,12 +67,12 @@ class FirebaseService implements IAuthService, ISyncService, IDatabaseService {
       await addPhoto(photo);
       return true;
     }).onError((error, stackTrace) {
-      print(error);
+      log(error.toString());
       return false;
     });
   }
 
-  /// Downloads a file
+  @override
   Future<File?> downloadFile(SyncedPhoto photo, {required String filepath}) async {
     final storageReference = FirebaseStorage.instance.ref().child(_filepathForPhoto(photo));
     final data = await storageReference.getData();
@@ -82,7 +83,7 @@ class FirebaseService implements IAuthService, ISyncService, IDatabaseService {
     return null;
   }
 
-  /// Deletes a file
+  @override
   Future<void> deleteFile(SyncedPhoto photo) async {
     final storageReference = FirebaseStorage.instance.ref().child(_filepathForPhoto(photo));
     try {
@@ -90,16 +91,16 @@ class FirebaseService implements IAuthService, ISyncService, IDatabaseService {
 
       await removePhoto(photo);
     } catch (e) {
-      print(e);
+      log(e.toString());
     }
   }
 
   /// Returns the storage filepath  for a synced photo
   String _filepathForPhoto(SyncedPhoto photo) => '${photo.user}/${photo.folder}/${photo.filename}';
 
-  /// Region: IDatabaseService
+  // Region: IDatabaseService
 
-  /// Adds photo data to the database
+  @override
   Future<void> addPhoto(SyncedPhoto photo) async {
     final documentReference = _documentReferenceFromSyncedPhoto(photo);
     await FirebaseFirestore.instance.runTransaction((transaction) async {
@@ -110,13 +111,13 @@ class FirebaseService implements IAuthService, ISyncService, IDatabaseService {
     });
   }
 
-  /// Removes photo data from the database
+  @override
   Future<void> removePhoto(SyncedPhoto photo) async {
     final documentReference = _documentReferenceFromSyncedPhoto(photo);
     await documentReference.delete();
   }
 
-  /// Gets all synced photo data from the database
+  @override
   Future<List<SyncedPhoto>> getPhotos({required String user}) async {
     final snapshot = await FirebaseFirestore.instance.collection(user).get();
     return snapshot.docs.map((doc) => SyncedPhoto.fromJson(doc.data())).toList();
@@ -124,5 +125,5 @@ class FirebaseService implements IAuthService, ISyncService, IDatabaseService {
 
   /// Returns a DocumentReference for a synced photo
   DocumentReference _documentReferenceFromSyncedPhoto(SyncedPhoto photo) =>
-      FirebaseFirestore.instance.collection('${photo.user}').doc('${photo.folder}|${photo.filename}');
+      FirebaseFirestore.instance.collection(photo.user).doc('${photo.folder}|${photo.filename}');
 }

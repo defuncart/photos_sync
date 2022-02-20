@@ -30,17 +30,13 @@ Note: by default, mobile is considered the uploader, while desktop is the downlo
 
 If you would like to build the app yourself, then you simply need:
 
-- Flutter >= 1.20 (master branch)
-- Dart >= 2.9
-- Xcode >= 11.5
-- Android SDK >= 29.0.4
+- Flutter >= 2.10
+- Dart >= 2.16
+- Xcode >= 13.0
+- Android SDK >= 31.0.0
 - macOS >= 10.15
 
 Also you need to create a Firebase project and [add it](https://firebase.google.com/docs/flutter/setup) to this Flutter project.
-
-## Notes
-
-Due to [MissingPluginException(No implementation found for method getAll on channel plugins.flutter.io/shared_preferences)](https://github.com/flutter/flutter/issues/66833) issue, the [following solution](https://github.com/flutter/flutter/issues/66833#issuecomment-786646405) is currently used.
 
 ## Contributing
 

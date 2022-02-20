@@ -15,7 +15,7 @@ class ErrorDialog extends StatelessWidget {
         TextButton(
           child: Text(I18n.generalOk),
           style: TextButton.styleFrom(
-            primary: Theme.of(context).accentColor,
+            primary: Theme.of(context).colorScheme.secondary,
           ),
           onPressed: () => Navigator.of(context).pop(),
         )
@@ -26,5 +26,5 @@ class ErrorDialog extends StatelessWidget {
 
 void showErrorDialog(BuildContext context) => showDialog(
       context: context,
-      builder: (_) => ErrorDialog(),
+      builder: (_) => const ErrorDialog(),
     );

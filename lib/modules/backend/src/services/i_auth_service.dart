@@ -1,4 +1,4 @@
-/// A service which authenciates a user
+/// A service which authenticates a user
 abstract class IAuthService {
   /// Attempts to create a new user with a given email and password combination
   Future<bool> createUserAccount({required email, required password});

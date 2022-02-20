@@ -28,7 +28,7 @@ class _SyncedPhotosScreenState extends State<SyncedPhotosScreen> {
       appBar: AppBar(
         actions: [
           PopupMenuButton<int>(
-            icon: Icon(Icons.more_vert),
+            icon: const Icon(Icons.more_vert),
             onSelected: (_) async {
               final shouldDeleteAll = await showConfirmDialog(
                 context: context,
@@ -63,7 +63,7 @@ class _SyncedPhotosScreenState extends State<SyncedPhotosScreen> {
           switch (snapshot.connectionState) {
             case ConnectionState.waiting:
             case ConnectionState.active:
-              return Center(
+              return const Center(
                 child: CircularProgressIndicator(),
               );
             default:
@@ -81,7 +81,7 @@ class _SyncedPhotosScreenState extends State<SyncedPhotosScreen> {
                     background: Container(
                       alignment: AlignmentDirectional.centerEnd,
                       color: Colors.red,
-                      child: Padding(
+                      child: const Padding(
                         padding: EdgeInsets.fromLTRB(0.0, 0.0, 10.0, 0.0),
                         child: Icon(
                           Icons.delete,
