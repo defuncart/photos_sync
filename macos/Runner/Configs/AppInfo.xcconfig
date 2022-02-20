@@ -11,4 +11,4 @@ PRODUCT_NAME = photos_sync
 PRODUCT_BUNDLE_IDENTIFIER = com.defuncart.photossync
 
 // The copyright displayed in application information
-PRODUCT_COPYRIGHT = Copyright © 2020 com.defuncart. All rights reserved.
+PRODUCT_COPYRIGHT = Copyright © 2022 defuncart. All rights reserved.
