@@ -2,7 +2,7 @@ name: pull_request_ci
 on: pull_request
 jobs:
   lint-unit-tests:
-    name: Lint + Unit Tests
+    name: Lint + Tests
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
@@ -15,10 +15,10 @@ jobs:
       - name: Install packages
         run:
           flutter pub get
-      # - name: Lint
-      #   run: 
-      #     flutter analyze
-      - name: Unit tests
+      - name: Lint
+        run: 
+          flutter analyze
+      - name: Tests
         run:
           flutter test
   # build-Android:
