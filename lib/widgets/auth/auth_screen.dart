@@ -42,7 +42,7 @@ class _AuthScreenState extends State<AuthScreen> {
                 Container(height: 16),
                 Text(
                   widget.title,
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontSize: 32,
                     fontWeight: FontWeight.bold,
                   ),
@@ -139,15 +139,15 @@ class _CustomTextField extends StatelessWidget {
             color: Theme.of(context).disabledColor,
           ),
           borderRadius: const BorderRadius.all(
-            const Radius.circular(24.0),
+            Radius.circular(24.0),
           ),
         ),
         focusedBorder: OutlineInputBorder(
           borderSide: BorderSide(
-            color: Theme.of(context).accentColor,
+            color: Theme.of(context).colorScheme.secondary,
           ),
           borderRadius: const BorderRadius.all(
-            const Radius.circular(24.0),
+            Radius.circular(24.0),
           ),
         ),
         filled: false,
@@ -157,11 +157,11 @@ class _CustomTextField extends StatelessWidget {
         ),
         errorText: errorText,
         errorStyle: TextStyle(
-          color: Theme.of(context).accentColor,
+          color: Theme.of(context).colorScheme.secondary,
         ),
         suffixIcon: suffixIcon,
       ),
-      cursorColor: Theme.of(context).accentColor,
+      cursorColor: Theme.of(context).colorScheme.secondary,
       obscureText: shouldObscureText,
       keyboardType: keyboardType,
       autocorrect: false,

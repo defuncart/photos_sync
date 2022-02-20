@@ -15,6 +15,8 @@ import 'package:provider/provider.dart';
 class MyApp extends StatelessWidget {
   static final _firebaseService = FirebaseService();
 
+  const MyApp({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
@@ -30,8 +32,8 @@ class MyApp extends StatelessWidget {
         ),
       ],
       child: MaterialApp(
-        localizationsDelegates: [
-          const I18nDelegate(),
+        localizationsDelegates: const [
+          I18nDelegate(),
           GlobalCupertinoLocalizations.delegate,
           GlobalMaterialLocalizations.delegate,
           GlobalWidgetsLocalizations.delegate,
@@ -39,17 +41,20 @@ class MyApp extends StatelessWidget {
         supportedLocales: I18nDelegate.supportedLocals,
         theme: ThemeData.light().copyWith(
           primaryColor: Colors.black,
-          accentColor: Colors.pink[700],
+          colorScheme: const ColorScheme.light().copyWith(
+            primary: Colors.black,
+            secondary: Colors.pink[700],
+          ),
           scaffoldBackgroundColor: Colors.white,
           backgroundColor: Colors.pink[700],
         ),
-        home: UserPreferences.getIsLoggedIn() ? HomeScreen() : WelcomeScreen(),
+        home: UserPreferences.getIsLoggedIn() ? const HomeScreen() : const WelcomeScreen(),
         routes: {
-          RouteNames.welcomeScreen: (_) => WelcomeScreen(),
-          RouteNames.signupScreen: (_) => SignupScreen(),
-          RouteNames.loginScreen: (_) => LoginScreen(),
-          RouteNames.homeScreen: (_) => HomeScreen(),
-          RouteNames.syncedPhotosScreen: (_) => SyncedPhotosScreen(),
+          RouteNames.welcomeScreen: (_) => const WelcomeScreen(),
+          RouteNames.signupScreen: (_) => const SignupScreen(),
+          RouteNames.loginScreen: (_) => const LoginScreen(),
+          RouteNames.homeScreen: (_) => const HomeScreen(),
+          RouteNames.syncedPhotosScreen: (_) => const SyncedPhotosScreen(),
         },
       ),
     );

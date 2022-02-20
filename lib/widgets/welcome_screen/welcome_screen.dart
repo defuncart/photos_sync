@@ -41,7 +41,7 @@ class WelcomeScreen extends StatelessWidget {
                         letterSpacing: 3,
                       ),
                     ),
-                    Text(
+                    const Text(
                       'Sync',
                       style: TextStyle(
                         fontSize: 40,

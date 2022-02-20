@@ -27,14 +27,14 @@ class HomeScreen extends StatelessWidget {
       appBar: AppBar(
         actions: [
           PopupMenuButton<int>(
-            icon: Icon(Icons.more_vert),
+            icon: const Icon(Icons.more_vert),
             onSelected: (index) async => _mapMenuItemCallback[index]!(context),
             itemBuilder: (_) => [
               PopupMenuItem(
                 value: 1,
                 child: Text(I18n.homeScreenSyncedPhotosButtonText),
               ),
-              PopupMenuDivider(),
+              const PopupMenuDivider(),
               PopupMenuItem(
                 value: 0,
                 child: Text(I18n.homeScreenLogoutButtonText),
@@ -43,7 +43,7 @@ class HomeScreen extends StatelessWidget {
           ),
         ],
       ),
-      body: _HomePageContent(),
+      body: const _HomePageContent(),
     );
   }
 }
@@ -61,11 +61,11 @@ class __HomePageContentState extends State<_HomePageContent> {
     final clientType = UserPreferences.getClientType();
     if (clientType == null) {
       _initializeClientType();
-      return Center(
+      return const Center(
         child: CircularProgressIndicator(),
       );
     } else {
-      return clientType == ClientType.uploader ? UploaderScreen() : DownloaderScreen();
+      return clientType == ClientType.uploader ? const UploaderScreen() : const DownloaderScreen();
     }
   }
 

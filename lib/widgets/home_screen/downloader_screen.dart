@@ -1,3 +1,4 @@
+import 'dart:developer' show log;
 import 'dart:io';
 
 import 'package:flutter/material.dart';
@@ -71,7 +72,7 @@ class _DownloaderScreenState extends State<DownloaderScreen> {
                       });
                     }
                   } else {
-                    print('No access to downloads directory.');
+                    log('No access to downloads directory.');
                   }
 
                   setState(() {

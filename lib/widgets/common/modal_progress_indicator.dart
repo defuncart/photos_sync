@@ -10,7 +10,7 @@ class ModalProgressIndicator {
         color: Colors.black.withAlpha(128),
         width: double.infinity,
         height: double.infinity,
-        child: Center(
+        child: const Center(
           child: CircularProgressIndicator(),
         ),
       ),

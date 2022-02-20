@@ -17,7 +17,7 @@ class CustomButton extends StatelessWidget {
     return MaterialButton(
       color: isFilled ? Colors.black : Colors.white,
       shape: RoundedRectangleBorder(
-        side: BorderSide(
+        side: const BorderSide(
           color: Colors.black,
           width: 1,
           style: BorderStyle.solid,
@@ -28,7 +28,7 @@ class CustomButton extends StatelessWidget {
         padding: const EdgeInsets.symmetric(vertical: 16),
         child: Text(
           buttonText.toUpperCase(),
-          style: TextStyle(
+          style: const TextStyle(
             fontWeight: FontWeight.bold,
           ),
         ),
